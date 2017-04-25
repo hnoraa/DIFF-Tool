@@ -19,6 +19,7 @@ this file contains the results of the diff comparison.
 
 ## JSON file structure
 * config.json: holds configuration items for the app
+```javascript
     {
 	    "theme": "defaultTheme.json",
 	    "themeDirectory": "",
@@ -32,7 +33,9 @@ this file contains the results of the diff comparison.
 		"scriptDirectory": "C:\\DiffTool",
 		"versionDirectory": ""
     }
+```
 * theme.json: holds theme (css styles) for the diff .html page output
+```javascript
 	{
 		"name": "Default Theme",
 		"author": "Aaron Horeth",
@@ -51,3 +54,4 @@ this file contains the results of the diff comparison.
 			"background": "#b6465f"
 		}]
 	}
+```
