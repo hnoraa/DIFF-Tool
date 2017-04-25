@@ -60,18 +60,17 @@ have been set to ignore as a privacy measure to potential users/contributers.
 	"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
 	"page-color": "#171738",
 	"body-color": "#efeae6",
-	"addition-color": [{
-		"foreground": "#ff6b6b"
-	}, {
+	"addition-color": {
+		"foreground": "#ff6b6b",
 		"background": "#4ecdc4"
-	}],
-	"subtraction-color": [{
-		"foreground": "#8bb174"
-	}, {
+	},
+	"subtraction-color": {
+		"foreground": "#8bb174",
 		"background": "#b6465f"
-	}]
+	}
 }
 ```
 
 Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)
+
 Markdown Editor: [DILLINGER](http://dillinger.io/)
