@@ -22,16 +22,16 @@ have been set to ignore as a privacy measure to potential users/contributers.
 
 ## Tasks
 4/25/2017
-*[] adjust theme.json structure to be more conducive for translating to css
-*[] implement saving in config.py (write to json file)
-*[]
+* [] adjust theme.json structure to be more conducive for translating to css
+* [] implement saving in config.py (write to json file)
+* []
 
 ## Updates
 <sub><sup>Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)</sup></sub>
-| Date      | Contents |
-|-----------|----------|
+| Date      | Contents                                                                                                    |
+|-----------|-------------------------------------------------------------------------------------------------------------|
 | 4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
-|  | - Configuration JSON structure determined. |
+|           | - Configuration JSON structure determined.                                                                  |
 
 ## JSON File Structure
 * config.json: holds configuration items for the app
