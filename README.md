@@ -27,7 +27,8 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * []
 
 ## Updates
-<sub><sup>Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)</sup></sub>
+<sub>Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)</sub>
+
 | Date      | Contents                                                                                                    |
 |-----------|-------------------------------------------------------------------------------------------------------------|
 | 4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
