@@ -1,0 +1,14 @@
+{
+	"theme": "defaultTheme.json",
+	"themeDirectory": "",
+	"themes": [{
+		"defaultTheme": "defaultTheme.json"
+	}],
+	"directory": "",
+	"version": "0.0.1",
+	"name": "Diff Tool",
+	"description": "A file comparing tool",
+	"author": "Aaron Horeth",
+	"scriptDirectory": "C:\\DiffTool",
+	"versionDirectory": ""
+}
