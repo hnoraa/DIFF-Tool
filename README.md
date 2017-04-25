@@ -5,20 +5,35 @@ A small tool for comparing file versions
 
 ## Description
 Diff Tool is a tool for comparing 2 different versions of the same file. It produces an .html file as output
-this file contains the results of the diff comparison.
+this file contains the results of the diff comparison. 
 
-## Libraries
+The .gitignore file has been set up to ignore config
+files with a naming convention of *.local.json so when testing locally, you can copy config.json to 
+config.local.json and use your own directory structure. Also, archive files in the versions directory
+have been set to ignore as a privacy measure to potential users/contributers.
+
+## Libraries Used
 * os
 * time
 * json
 
-## Tested on following OSs
+## Tested on Following OSs
 * Windows 10
 
-## Updates
-4/25/2017 - Repository created. First implementation of this will be command line only and deal with .txt files only.
+## Tasks
+4/25/2017
+*[] adjust theme.json structure to be more conducive for translating to css
+*[] implement saving in config.py (write to json file)
+*[]
 
-## JSON file structure
+## Updates
+<sub><sup>Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)</sup></sub>
+| Date      | Contents |
+|-----------|----------|
+| 4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
+|  | - Configuration JSON structure determined. |
+
+## JSON File Structure
 * config.json: holds configuration items for the app
 ```javascript
 {
