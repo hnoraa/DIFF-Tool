@@ -47,7 +47,7 @@ class Config():
 	def getJsonString(self):
 		# returns a json string from self.configFile
 		f = open(self.configFile, 'r')
-		self.jsonString = json.loads(f)
+		self.jsonString = json.loads(f.read())
 		f.close()
 		
 	
