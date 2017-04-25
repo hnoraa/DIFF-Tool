@@ -23,16 +23,15 @@ this file contains the results of the diff comparison.
 ```javascript
 {
 	"theme": "defaultTheme.json",
-	"themeDirectory": "",
-	"themes": [{
-		"defaultTheme": "defaultTheme.json"
-	}],
-	"directory": "",
+	"themeDirectory": "C:\\DiffTool\\Themes",
+	"themes": [
+	],
 	"version": "0.0.1",
-	"name": "DIFF Tool",
+	"name": "Diff Tool",
+	"description": "A file comparing tool",
 	"author": "Aaron Horeth",
-	"scriptDirectory": "C:\\DiffTool",
-	"versionDirectory": ""
+	"appDirectory": "C:\\DiffTool",
+	"versionDirectory": "C:\\DiffTool\\Versions"
 }
 ```
 * theme.json: holds theme (css styles) for the diff .html page output

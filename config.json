@@ -1,14 +1,19 @@
 {
 	"theme": "defaultTheme.json",
-	"themeDirectory": "",
+	"themeDirectory": "C:\\DiffTool\\Themes",
 	"themes": [{
-		"defaultTheme": "defaultTheme.json"
-	}],
-	"directory": "",
+			"name": "defaultTheme",
+			"file": "defaultTheme.json"
+		},
+		{
+			"name": "darkTheme",
+			"file": "darkTheme.json"
+		}
+	],
 	"version": "0.0.1",
 	"name": "Diff Tool",
 	"description": "A file comparing tool",
 	"author": "Aaron Horeth",
-	"scriptDirectory": "C:\\DiffTool",
-	"versionDirectory": ""
+	"appDirectory": "C:\\DiffTool",
+	"versionDirectory": "C:\\DiffTool\\Versions"
 }

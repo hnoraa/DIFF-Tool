@@ -3,29 +3,76 @@
 import json
 
 class Config():
-	def __init__(self, path):
+	def __init__(self, path=''):
 		# set up config object
 		self.name = ''
 		self.author = ''
 		self.version = ''
 		self.theme = ''
-		self.themeDirectory = ''
 		self.themes = []
-		self.directory = ''
-		self.scriptDirectory = ''
+		self.themeDirectory = ''
+		self.appDirectory = ''
 		self.versionDirectory = ''
+		self.description = ''
 		
 		# only parameter is the full path of the config.json file
 		self.configFile = path
 		
-	def loadConfig(self):
-		config = json.loads(open(self.configFile).read())
+		if len(self.configFile) > 0:
+			# get json string 
+			self.jsonString = self.getJsonString()
+			
+			# load config object
+			self.loadConfig(True)
+			
+			# load themes
+			self.loadThemes(True)
+		else:
+			print 'WARNING: No Configuration file has been loaded. Please load one for configuration to continue.'
+			
+	
+	def getJsonString(self):
+		# returns a json string from self.configFile
+		return json.loads(open(self.configFile).read())
+	
+	def loadConfig(self, firstLoad):
+		if firstLoad == False:
+			# refresh json string, in case config has changed
+			self.jsonString = self.getJsonString()
 		
-		self.name = config["name"]
-		self.author = config["author"]
-		self.version = config["version"]
-		self.theme = config["theme"]
-		self.themeDirectory = config["themeDirectory"]
-		self.directory = config["directory"]
-		self.scriptDirectory = config["scriptDirectory"]
-		self.versionDirectory = config["versionDirectory"]
+		# populate object
+		self.name = self.jsonString["name"]
+		self.author = self.jsonString["author"]
+		self.version = self.jsonString["version"]
+		self.description = self.jsonString["description"]
+		self.theme = self.jsonString["theme"]
+		self.themeDirectory = self.jsonString["themeDirectory"]
+		self.appDirectory = self.jsonString["appDirectory"]
+		self.versionDirectory = self.jsonString["versionDirectory"]
+		
+	def loadThemes(self, firstLoad):
+		if firstLoad == False:
+			# refresh json string, in case config has changed
+			self.jsonString = self.getJsonString()
+		
+		# populate themes
+		themes = self.jsonString["themes"]
+		for i in themes:
+			theme = {"name": i["name"], "file": i["file"]}
+			self.themes.append(theme)
+		
+	def about(self):
+		print '============================================================'
+		print 'About:'
+		print self.name
+		print 'Version: ' + self.version
+		print 'Author: ' + self.author
+		print self.description
+		print '============================================================'
+		
+	def listThemes(self):
+		print '============================================================'
+		print 'Themes:'
+		for i in self.themes:
+			print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
+		print '============================================================'
