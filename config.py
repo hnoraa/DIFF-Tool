@@ -20,7 +20,7 @@ class Config():
 		
 		if len(self.configFile) > 0:
 			# get json string 
-			self.jsonString = self.getJsonString()
+			self.getJsonString()
 			
 			# load config object
 			self.loadConfig(True)
@@ -30,15 +30,31 @@ class Config():
 		else:
 			print 'WARNING: No Configuration file has been loaded. Please load one for configuration to continue.'
 			
+	def clearObject(self):
+		self.name = ''
+		self.author = ''
+		self.version = ''
+		self.theme = ''
+		self.themes = []
+		self.themeDirectory = ''
+		self.appDirectory = ''
+		self.versionDirectory = ''
+		self.description = ''
+		
+	def saveObject(self):
+		pass
 	
 	def getJsonString(self):
 		# returns a json string from self.configFile
-		return json.loads(open(self.configFile).read())
+		f = open(self.configFile, 'r')
+		self.jsonString = json.loads(f)
+		f.close()
+		
 	
-	def loadConfig(self, firstLoad):
+	def loadConfig(self, firstLoad=False):
 		if firstLoad == False:
 			# refresh json string, in case config has changed
-			self.jsonString = self.getJsonString()
+			self.getJsonString()
 		
 		# populate object
 		self.name = self.jsonString["name"]
@@ -50,10 +66,10 @@ class Config():
 		self.appDirectory = self.jsonString["appDirectory"]
 		self.versionDirectory = self.jsonString["versionDirectory"]
 		
-	def loadThemes(self, firstLoad):
+	def loadThemes(self, firstLoad=False):
 		if firstLoad == False:
 			# refresh json string, in case config has changed
-			self.jsonString = self.getJsonString()
+			self.getJsonString()
 		
 		# populate themes
 		themes = self.jsonString["themes"]
