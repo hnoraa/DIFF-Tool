@@ -24,11 +24,10 @@ have been set to ignore as a privacy measure to potential users/contributers.
 4/25/2017
 * [] adjust theme.json structure to be more conducive for translating to css
 * [] implement saving in config.py (write to json file)
-* []
+* [] load theme json and create basic css structure
+* [] decide layout for html output file
 
 ## Updates
-<sub>Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)</sub>
-
 | Date      | Contents                                                                                                    |
 |-----------|-------------------------------------------------------------------------------------------------------------|
 | 4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
@@ -73,3 +72,6 @@ have been set to ignore as a privacy measure to potential users/contributers.
 	}]
 }
 ```
+
+Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)
+Markdown Editor: [DILLINGER](http://dillinger.io/)
