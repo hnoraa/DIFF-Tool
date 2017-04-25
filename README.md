@@ -20,38 +20,38 @@ this file contains the results of the diff comparison.
 ## JSON file structure
 * config.json: holds configuration items for the app
 ```javascript
-    {
-	    "theme": "defaultTheme.json",
-	    "themeDirectory": "",
-	    "themes": [{
-		    "defaultTheme": "defaultTheme.json"
-	    }],
-		"directory": "",
-		"version": "0.0.1",
-		"name": "DIFF Tool",
-		"author": "Aaron Horeth",
-		"scriptDirectory": "C:\\DiffTool",
-		"versionDirectory": ""
-    }
+{
+	"theme": "defaultTheme.json",
+	"themeDirectory": "",
+	"themes": [{
+		"defaultTheme": "defaultTheme.json"
+	}],
+	"directory": "",
+	"version": "0.0.1",
+	"name": "DIFF Tool",
+	"author": "Aaron Horeth",
+	"scriptDirectory": "C:\\DiffTool",
+	"versionDirectory": ""
+}
 ```
 * theme.json: holds theme (css styles) for the diff .html page output
 ```javascript
-	{
-		"name": "Default Theme",
-		"author": "Aaron Horeth",
-		"date": "April 25, 2017",
-		"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
-		"page-color": "#171738",
-		"body-color": "#efeae6",
-		"addition-color": [{
-			"foreground": "#ff6b6b"
-		}, {
-			"background": "#4ecdc4"
-		}],
-		"subtraction-color": [{
-			"foreground": "#8bb174"
-		}, {
-			"background": "#b6465f"
-		}]
-	}
+{
+	"name": "Default Theme",
+	"author": "Aaron Horeth",
+	"date": "April 25, 2017",
+	"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
+	"page-color": "#171738",
+	"body-color": "#efeae6",
+	"addition-color": [{
+		"foreground": "#ff6b6b"
+	}, {
+		"background": "#4ecdc4"
+	}],
+	"subtraction-color": [{
+		"foreground": "#8bb174"
+	}, {
+		"background": "#b6465f"
+	}]
+}
 ```
