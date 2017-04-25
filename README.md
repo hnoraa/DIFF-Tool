@@ -25,6 +25,8 @@ this file contains the results of the diff comparison.
 	"theme": "defaultTheme.json",
 	"themeDirectory": "C:\\DiffTool\\Themes",
 	"themes": [
+		{"name": "defaultTheme", "file": "defaultTheme.json"},
+		{"name": "darkTheme", "file": "darkTheme.json"}
 	],
 	"version": "0.0.1",
 	"name": "Diff Tool",
