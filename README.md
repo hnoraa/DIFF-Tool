@@ -8,7 +8,7 @@ Diff Tool is a tool for comparing 2 different versions of the same file. It prod
 this file contains the results of the diff comparison. 
 
 The .gitignore file has been set up to ignore config
-files with a naming convention of *.local.json so when testing locally, you can copy config.json to 
+files with a naming convention of \*.local.json so when testing locally, you can copy config.json to 
 config.local.json and use your own directory structure. Also, archive files in the versions directory
 have been set to ignore as a privacy measure to potential users/contributers.
 
@@ -20,7 +20,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 
 ## Tested on Following OSs
 * Windows 10
-* Ubuntu 16.04
+* Ubuntu 16.04.2 LTS
 
 ## Tasks
 4/25/2017
@@ -35,6 +35,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 |-----------|-------------------------------------------------------------------------------------------------------------|
 | 4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
 |           | - Configuration JSON structure determined.                                                                  |
+|           | - Added checks for Linux/Windows for cross-platform compatibility.                                          |
 
 ## JSON File Structure
 * config.json: holds configuration items for the app
