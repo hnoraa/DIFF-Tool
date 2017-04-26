@@ -16,9 +16,11 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * os
 * time
 * json
+* sys
 
 ## Tested on Following OSs
 * Windows 10
+* Ubuntu 16.04
 
 ## Tasks
 4/25/2017
