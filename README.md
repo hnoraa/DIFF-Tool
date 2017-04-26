@@ -79,3 +79,5 @@ have been set to ignore as a privacy measure to potential users/contributers.
 Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)
 
 Markdown Editor: [DILLINGER](http://dillinger.io/)
+
+CSS Color Scheme: [coolors](https://coolors.co/efeae6-171738-b6465f-b5ca8d-8bb174)
