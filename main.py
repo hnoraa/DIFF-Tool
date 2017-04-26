@@ -1,20 +1,43 @@
 # Diff Tool - main.py
 # Entry point for the Diff Tool
 import config, theme
-import os
-import sys
+import globalFunc as glb
 
-print "Testing config.py..."
-if sys.platform == "Windows":
-	path = os.getcwd() + '\\config.local.json'
-elif "linux" in sys.platform.lower():
-	print 'test'
-	path = os.getcwd() + '/config.local.json'
+# flags
+COMMAND_LINE = True
+DEBUG = True
+
+# load config
+conf = glb.loadConfig('config.local.json')
+
+# load themes
+
+if COMMAND_LINE:
+	pass
+else:
+	# GUI (possible future implementation)
+	pass
 	
-conf = config.Config(path)
-conf.about()
-conf.listThemes()
+if DEBUG:
+	print "Testing config.py..."
+	
+	conf.about()
+	conf.listThemes()
 
-print "Testing theme.py..."
-style = theme.Theme(conf)
-style.about()
+	print "Testing theme.py..."
+	# style = theme.Theme(conf)
+	# style.about()
+
+	print "Testing file loading..."
+	file = glb.cwd() + 'test_text_1.test.txt'
+
+	txt = open(file)
+	t = txt.read()
+	txt.close()
+
+	print t
+	print type(t)
+
+	x = glb.getFileLineList(file)
+	print x
+	print type(x)

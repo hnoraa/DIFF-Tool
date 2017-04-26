@@ -94,3 +94,6 @@ ENV/
 # version files
 Versions/*.zip
 Versions/*.gzip
+
+# test input .txt files
+*.test.txt

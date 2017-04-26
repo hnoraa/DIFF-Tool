@@ -1,6 +1,6 @@
 # Diff Tool - config.py
 # defines the config object
-import json
+import globalFunc as glb
 
 class Config():
 	def __init__(self, path=''):
@@ -39,9 +39,7 @@ class Config():
 	def getJsonString(self):
 		# returns a json string from self.configFile
 		self.jsonString = ''
-		f = open(self.configFile, 'r')
-		self.jsonString = json.loads(f.read())
-		f.close()
+		self.jsonString = glb.getJsonString(self.configFile)	
 		
 	
 	def loadConfig(self, firstLoad=False):

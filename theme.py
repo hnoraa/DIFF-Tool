@@ -1,15 +1,11 @@
 # Diff Tool - theme.py
 # defines the theme object
-import json
-import sys
+import globalFunc as glb
 
 class Theme():
 	def __init__(self, config):
 		# only parameter is the full path of the config.json file
-		if sys.platform == "Windows":
-			self.themeFile = config.themeDirectory + '\\' + config.theme
-		elif "linux" in sys.platform.lower():
-			self.themeFile = config.themeDirectory + '/' + config.theme
+		self.themeFile = glb.cwd() + config.theme
 		
 		if len(self.themeFile) > 0:
 			self.clearObject()
@@ -26,9 +22,7 @@ class Theme():
 	def getJsonString(self):
 		# returns a json string from self.themeFile
 		self.jsonString = ''
-		f = open(self.themeFile, 'r')
-		self.jsonString = json.loads(f.read())
-		f.close()	
+		self.jsonString = glb.getJsonString(self.themeFile)	
 		
 	def clearObject(self):
 		self.name = ''
