@@ -31,11 +31,13 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * [X] Windows/Linux cross platform
 
 ## Updates
-| Date      | Contents                                                                                                    |
-|-----------|-------------------------------------------------------------------------------------------------------------|
-| 4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
-|           | - Configuration JSON structure determined.                                                                  |
-|           | - Added checks for Linux/Windows for cross-platform compatibility.                                          |
+| Date       | Contents                                                                                                    |
+|------------|-------------------------------------------------------------------------------------------------------------|
+|  4/26/2017 | - Started work on core functionality.                                                                       |
+|------------|-------------------------------------------------------------------------------------------------------------|
+|  4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
+|            | - Configuration JSON structure determined.                                                                  |
+|            | - Added checks for Linux/Windows for cross-platform compatibility.                                          |
 
 ## JSON File Structure
 * config.json: holds configuration items for the app
