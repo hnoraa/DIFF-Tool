@@ -62,7 +62,7 @@ class Theme():
 		print '============================================================'
 		print 'About:'
 		print self.name
-		print 'Version: ' + self.date
+		print 'Created: ' + self.date
 		print 'Author: ' + self.author
 		print self.description
 		print '============================================================'

@@ -3,8 +3,18 @@
 	"author": "Aaron Horeth",
 	"date": "April 25, 2017",
 	"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
-	"page-color": "#171738",
-	"body-color": "#efeae6",
+	"body": [
+		"body {",
+		"margin: 0 auto;",
+		"background-color: #171738;",
+		"}"
+	],
+	"diffBody": [
+		"#diffBody {",
+		"font-family: \"Lucida Console\" \"Courier New\" monospace;",
+		"background-color:#efeae6;",
+		"}"
+	],
 	"addition-color": {
 		"foreground": "#ff6b6b",
 		"background": "#4ecdc4"
