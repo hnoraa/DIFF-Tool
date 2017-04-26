@@ -1,11 +1,15 @@
 # Diff Tool - theme.py
 # defines the theme object
 import json
+import sys
 
 class Theme():
 	def __init__(self, config):
 		# only parameter is the full path of the config.json file
-		self.themeFile = config.themeDirectory + '\\' + config.theme
+		if sys.platform == "Windows":
+			self.themeFile = config.themeDirectory + '\\' + config.theme
+		elif "linux" in sys.platform.lower():
+			self.themeFile = config.themeDirectory + '/' + config.theme
 		
 		if len(self.themeFile) > 0:
 			self.clearObject()

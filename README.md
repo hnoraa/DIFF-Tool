@@ -22,10 +22,11 @@ have been set to ignore as a privacy measure to potential users/contributers.
 
 ## Tasks
 4/25/2017
-* [] adjust theme.json structure to be more conducive for translating to css
-* [] implement saving in config.py (write to json file)
-* [] load theme json and create basic css structure
-* [] decide layout for html output file
+* [ ] adjust theme.json structure to be more conducive for translating to css
+* [ ] implement saving in config.py (write to json file)
+* [ ] load theme json and create basic css structure
+* [ ] decide layout for html output file
+* [X] Windows/Linux cross platform
 
 ## Updates
 | Date      | Contents                                                                                                    |

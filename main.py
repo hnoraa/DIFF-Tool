@@ -2,9 +2,15 @@
 # Entry point for the Diff Tool
 import config, theme
 import os
+import sys
 
 print "Testing config.py..."
-path = os.getcwd() + '\\config.json'
+if sys.platform == "Windows":
+	path = os.getcwd() + '\\config.local.json'
+elif "linux" in sys.platform.lower():
+	print 'test'
+	path = os.getcwd() + '/config.local.json'
+	
 conf = config.Config(path)
 conf.about()
 conf.listThemes()
