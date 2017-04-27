@@ -6,12 +6,12 @@ import json
 import config
 
 def loadConfig(fileName):
-	path = cwd() + fileName
+	path = homeDirectory() + fileName
 	conf = config.Config(path)
 	return conf
 
-def cwd():
-	# returns cwd in OS correct syntax
+def homeDirectory():
+	# returns home directory in OS correct syntax
 	path = os.getcwd()
 	if ("win") in sys.platform:
 		path += '\\'
@@ -19,6 +19,24 @@ def cwd():
 		path += '/'
 	return path
 
+def themesDirectory():
+	# returns themes directory in OS correct syntax
+	path = os.getcwd()
+	if ("win") in sys.platform:
+		path += '\\Themes\\'
+	elif ("linux") in sys.platform.lower():
+		path += '/Themes/'
+	return path
+	
+def versionsDirectory():
+	# returns versions directory in OS correct syntax
+	path = os.getcwd()
+	if ("win") in sys.platform:
+		path += '\\Versions\\'
+	elif ("linux") in sys.platform.lower():
+		path += '/Versions/'
+	return path
+	
 def getJsonString(fileName):
 	# returns a json string
 	f = open(fileName, 'r')

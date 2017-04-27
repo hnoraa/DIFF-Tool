@@ -5,7 +5,7 @@ import globalFunc as glb
 class Theme():
 	def __init__(self, config):
 		# only parameter is the full path of the config.json file
-		self.themeFile = glb.cwd() + config.theme
+		self.themeFile = glb.themesDirectory() + config.theme
 		
 		if len(self.themeFile) > 0:
 			self.clearObject()
@@ -29,10 +29,11 @@ class Theme():
 		self.date = ''
 		self.author = ''
 		self.description = ''
-		self.pageColor = ''
-		self.bodyColor = ''
-		self.additionStyle = {}
-		self.subtractionStyle = {}
+		self.body = []
+		self.main = []
+		self.diffHeader = []
+		self.diffBody = []
+		self.css = []
 			
 	def loadTheme(self, firstLoad=False):		
 		if firstLoad == False:
@@ -44,13 +45,31 @@ class Theme():
 		self.author = self.jsonString["author"]
 		self.date = self.jsonString["date"]
 		self.description = self.jsonString["description"]
-		self.pageColor = self.jsonString["page-color"]
-		self.bodyColor = self.jsonString["body-color"]
-		self.additionStyle = self.jsonString["addition-color"]
-		self.subtractionStyle = self.jsonString["subtraction-color"]
+		self.body = self.jsonString["body"]
+		self.main = self.jsonString["main"]
+		self.diffHeader = self.jsonString["diffHeader"]
+		self.diffBody = self.jsonString["diffBody"]
 		
 	def createTheme(self):
-		pass
+		self.css.append('<style type="text/css">')
+		
+		# body css
+		for d in self.body:
+			self.css.append(d)
+			
+		# main content area
+		for m in self.main:
+			self.css.append(m)
+			
+		# diff header area
+		for h in self.diffHeader:
+			self.css.append(h)
+			
+		# diff body area
+		for b in self.diffBody:
+			self.css.append(b)
+		
+		self.css.append('</style>')
 		
 	def about(self):
 		print '============================================================'
