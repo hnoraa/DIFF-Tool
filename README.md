@@ -68,17 +68,58 @@ have been set to ignore as a privacy measure to potential users/contributers.
 }
 ```
 * configSchema.json: the schema for proper config file layout
-```
+```javascript
 {
-	"name": "string",
-	"author": "string",
-	"appDirectory": "string",
-	"versionDirectory": "string",
-	"themes": { "name": "string", "file": "string" },
-	"theme": "string",
-	"version": "string",
-	"themeDirectory": "string",
-	"description": "string"
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Config",
+	"description": "Configuration object",
+	"type": "object",
+	"properties": {
+		"name": {
+			"description": "Name of the application",
+			"type": "string"
+		},
+		"author": {
+			"description": "Author of the application",
+			"type": "string"
+		},
+		"appDirectory": {
+			"description": "Main directory of the application",
+			"type": "string"
+		},
+		"versionDirectory": {
+			"description": "Version directory for the application",
+			"type": "string"
+		},
+		"themes": {
+			"type": "array",
+			"items": {"$ref": "#/definitions/name", "$ref": "#/definitions/file"},
+			"definitions": {
+				"name": {
+					"type": "string"
+				},
+				"file": {
+					"type": "string"
+				}
+			}
+		},
+		"theme": {
+			"description": "Default theme",
+			"type": "string"
+		},
+		"version": {
+			"description": "Version of the application",
+			"type": "string"
+		},
+		"themeDirectory": {
+			"description": "Theme directory for the application",
+			"type": "string"
+		},
+		"description": {
+			"description": "Description of the application",
+			"type": "string"
+		}
+	}
 }
 ```
 * theme.json: holds theme (css styles) for the diff .html page output
@@ -108,17 +149,40 @@ have been set to ignore as a privacy measure to potential users/contributers.
 }
 ```
 * themeSchema.json: the schema for proper theme file layout
-```
+```javascript
 {
-	"name": "string",
-	"author": "string",
-	"date": "string",
-	"description": "string",
-	"body": { "string" },
-	"main": { "string" },
-	"diffHeader": { "string" },
-	"diffBody": { "string" }
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Theme",
+	"description": "Theme objects",
+	"type": "object",
+	"properties": {
+		"name": {
+			"description": "Name of the theme",
+			"type": "string"
+		},
+		"author": {
+			"description": "Author of the theme",
+			"type": "string"
+		},
+		"description": {
+			"description": "Description of the theme",
+			"type": "string"
+		},
+		"body": {
+			"type": "array"
+		},
+		"main": {
+			"type": "array"
+		},
+		"diffHeader": {
+			"type": "array"
+		},
+		"diffBody": {
+			"type": "array"
+		}
+	}
 }
+
 ```
 
 Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)
