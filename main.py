@@ -2,6 +2,7 @@
 # Entry point for the Diff Tool
 import config, theme
 import globalFunc as glb
+from jsonschema import validate
 
 # flags
 COMMAND_LINE = True
@@ -46,3 +47,18 @@ if DEBUG:
 	x = glb.getFileLineList(file)
 	print x
 	print type(x)
+	
+	# test json schema
+	schema = {
+		"type": "object",
+		"properties": {
+			"price": { "type": "number" },
+			"name": { "type": "string" }
+		}
+	}
+	
+	validate({"name": "Eggs", "price": 20.99}, schema)
+	validate({"name": "Eggs", "price": "Invalid"}, schema)
+	
+	
+	

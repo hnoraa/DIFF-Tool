@@ -17,6 +17,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * time
 * json
 * sys
+* jsonschema
 
 ## Tested on Following OSs
 * Windows 10
@@ -30,7 +31,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * [ ] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
 
 4/26/2017
-* [ ] create JSON schema files for config and theme
+* [X] create JSON schema files for config and theme
 * [ ] validate against those schemas to ensure app can run correctly
 
 4/25/2017
