@@ -44,6 +44,8 @@ have been set to ignore as a privacy measure to potential users/contributers.
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  4/27/2017 | - Created Config JSON schema.                                                                               |
+|            | - Create Theme JSON schema.                                                                                 |
 |  4/26/2017 | - Started work on core functionality.                                                                       |
 |  4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
 |            | - Configuration JSON structure determined.                                                                  |
