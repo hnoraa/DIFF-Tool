@@ -4,23 +4,20 @@
 	"date": "April 25, 2017",
 	"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
 	"body": [
-		"body {",
-		"margin: 0 auto;",
-		"background-color: #171738;",
-		"}"
+		"body {margin: 0 auto; background-color: #171738;}"
+	],
+	"main": [
+		"#main {position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;}",
+		".diff {font-family:\"Lucida Console\",\"Courier New\",monospace; background-color:#efeae6;}"
+	],
+	"diffHeader": [
+		"#diffHeader {position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;}"
 	],
 	"diffBody": [
-		"#diffBody {",
-		"font-family: \"Lucida Console\" \"Courier New\" monospace;",
-		"background-color:#efeae6;",
-		"}"
-	],
-	"addition-color": {
-		"foreground": "#ff6b6b",
-		"background": "#4ecdc4"
-	},
-	"subtraction-color": {
-		"foreground": "#8bb174",
-		"background": "#b6465f"
-	}
+		"#diffBody {}",
+		"#diffLine {}",
+		".diffChange {font-weight: bold;}",
+		".diffLineAddition {foreground: #ff6b6b; background-color: #4ecdc4;}",
+		".diffLineSubtraction {foreground: #8bb174; background-color: #b6465f;}"
+	]
 }

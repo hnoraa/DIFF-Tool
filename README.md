@@ -22,9 +22,17 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Windows 10
 * Ubuntu 16.04.2 LTS
 
-## Tasks
+## Tasks (Date Indicates Date Task Came To Mind)
+4/27/2017
+* [ ] create "project" to keep file versions contained within
+* [ ] zip archive of project contains all file versions
+* [ ] when reading from zip file, determine latest version to compare with currently selected version
+* [ ] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
+4/26/2017
+* [ ] create JSON schema files for config and theme
+* [ ] validate against those schemas to ensure app can run correctly
 4/25/2017
-* [ ] adjust theme.json structure to be more conducive for translating to css
+* [X] adjust theme.json structure to be more conducive for translating to css
 * [ ] implement saving in config.py (write to json file)
 * [ ] load theme json and create basic css structure
 * [ ] decide layout for html output file
@@ -63,16 +71,23 @@ have been set to ignore as a privacy measure to potential users/contributers.
 	"author": "Aaron Horeth",
 	"date": "April 25, 2017",
 	"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
-	"page-color": "#171738",
-	"body-color": "#efeae6",
-	"addition-color": {
-		"foreground": "#ff6b6b",
-		"background": "#4ecdc4"
-	},
-	"subtraction-color": {
-		"foreground": "#8bb174",
-		"background": "#b6465f"
-	}
+	"body": [
+		"body {margin: 0 auto; background-color: #171738;}"
+	],
+	"main": [
+		"#main {position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;}",
+		".diff {font-family:\"Lucida Console\",\"Courier New\",monospace; background-color:#efeae6;}"
+	],
+	"diffHeader": [
+		"#diffHeader {position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;}"
+	],
+	"diffBody": [
+		"#diffBody {}",
+		"#diffLine {}",
+		".diffChange {font-weight: bold;}",
+		".diffLineAddition {foreground: #ff6b6b; background-color: #4ecdc4;}",
+		".diffLineSubtraction {foreground: #8bb174; background-color: #b6465f;}"
+	]
 }
 ```
 
@@ -81,3 +96,5 @@ Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/mark
 Markdown Editor: [DILLINGER](http://dillinger.io/)
 
 CSS Color Scheme: [coolors](https://coolors.co/efeae6-171738-b6465f-b5ca8d-8bb174)
+
+JSON Validator: [JSONLint](http://jsonlint.com/)
