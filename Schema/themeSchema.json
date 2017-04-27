@@ -1,0 +1,10 @@
+{
+	"name": "string",
+	"author": "string",
+	"date": "string",
+	"description": "string",
+	"body": { "string" },
+	"main": { "string" },
+	"diffHeader": { "string" },
+	"diffBody": { "string" }
+}

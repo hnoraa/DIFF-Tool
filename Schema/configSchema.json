@@ -1,0 +1,11 @@
+{
+	"name": "string",
+	"author": "string",
+	"appDirectory": "string",
+	"versionDirectory": "string",
+	"themes": { "name": "string", "file": "string" },
+	"theme": "string",
+	"version": "string",
+	"themeDirectory": "string",
+	"description": "string"
+}

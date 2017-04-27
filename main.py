@@ -22,6 +22,9 @@ if DEBUG:
 	print "Testing config.py..."
 	conf.about()
 	conf.listThemes()
+	
+	print "Updating config file"
+	conf.updateConfig("author", "Aaron E. Horeth")
 
 	print "Testing theme.py..."
 	style = theme.Theme(conf)

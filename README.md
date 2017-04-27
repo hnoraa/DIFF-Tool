@@ -35,7 +35,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 
 4/25/2017
 * [X] adjust theme.json structure to be more conducive for translating to css
-* [ ] implement saving in config.py (write to json file)
+* [X] implement saving in config.py (write to json file)
 * [X] load theme json and create basic css structure
 * [ ] decide layout for html output file
 * [X] Windows/Linux cross platform
@@ -66,6 +66,20 @@ have been set to ignore as a privacy measure to potential users/contributers.
 	"versionDirectory": "C:\\DiffTool\\Versions"
 }
 ```
+* configSchema.json: the schema for proper config file layout
+```
+{
+	"name": "string",
+	"author": "string",
+	"appDirectory": "string",
+	"versionDirectory": "string",
+	"themes": { "name": "string", "file": "string" },
+	"theme": "string",
+	"version": "string",
+	"themeDirectory": "string",
+	"description": "string"
+}
+```
 * theme.json: holds theme (css styles) for the diff .html page output
 ```javascript
 {
@@ -90,6 +104,19 @@ have been set to ignore as a privacy measure to potential users/contributers.
 		".diffLineAddition {foreground: #ff6b6b; background-color: #4ecdc4;}",
 		".diffLineSubtraction {foreground: #8bb174; background-color: #b6465f;}"
 	]
+}
+```
+* themeSchema.json: the schema for proper theme file layout
+```
+{
+	"name": "string",
+	"author": "string",
+	"date": "string",
+	"description": "string",
+	"body": { "string" },
+	"main": { "string" },
+	"diffHeader": { "string" },
+	"diffBody": { "string" }
 }
 ```
 
