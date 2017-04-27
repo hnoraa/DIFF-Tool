@@ -23,15 +23,15 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Ubuntu 16.04.2 LTS
 
 ## Tasks (Date Indicates Date Task Came To Mind)
-4/27/2017
+*4/27/2017
 * [ ] create "project" to keep file versions contained within
 * [ ] zip archive of project contains all file versions
 * [ ] when reading from zip file, determine latest version to compare with currently selected version
 * [ ] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
-4/26/2017
+*4/26/2017
 * [ ] create JSON schema files for config and theme
 * [ ] validate against those schemas to ensure app can run correctly
-4/25/2017
+*4/25/2017
 * [X] adjust theme.json structure to be more conducive for translating to css
 * [ ] implement saving in config.py (write to json file)
 * [ ] load theme json and create basic css structure
