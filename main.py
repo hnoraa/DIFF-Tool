@@ -49,16 +49,7 @@ if DEBUG:
 	print type(x)
 	
 	# test json schema
-	schema = {
-		"type": "object",
-		"properties": {
-			"price": { "type": "number" },
-			"name": { "type": "string" }
-		}
-	}
-	
-	validate({"name": "Eggs", "price": 20.99}, schema)
-	validate({"name": "Eggs", "price": "Invalid"}, schema)
-	
+	print glb.validateJson(glb.schemaDirectory()+'configSchema.json', glb.homeDirectory()+'config.local.json')
+	print glb.validateJson(glb.schemaDirectory()+'themeSchema.json', glb.themesDirectory()+'defaultTheme.json')
 	
 	

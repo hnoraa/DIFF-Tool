@@ -24,6 +24,10 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Ubuntu 16.04.2 LTS
 
 ## Tasks (Date Indicates Date Task Came To Mind)
+4/28/2017
+* [ ] generate html
+* [ ] possibly load html from a file to generate it and mix with css
+
 4/27/2017
 * [ ] create "project" to keep file versions contained within
 * [ ] zip archive of project contains all file versions
@@ -32,18 +36,19 @@ have been set to ignore as a privacy measure to potential users/contributers.
 
 4/26/2017
 * [X] create JSON schema files for config and theme
-* [ ] validate against those schemas to ensure app can run correctly
+* [X] validate against those schemas to ensure app can run correctly
 
 4/25/2017
 * [X] adjust theme.json structure to be more conducive for translating to css
 * [X] implement saving in config.py (write to json file)
 * [X] load theme json and create basic css structure
-* [ ] decide layout for html output file
+* [X] decide layout for html output file
 * [X] Windows/Linux cross platform
 
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  4/28/2017 | - Validation for JSON schema created and tested against config and theme.                                   |
 |  4/27/2017 | - Created Config JSON schema.                                                                               |
 |            | - Created Theme JSON schema.                                                                                |
 |  4/26/2017 | - Started work on core functionality.                                                                       |

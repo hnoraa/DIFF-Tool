@@ -4,17 +4,20 @@
 	"date": "April 25, 2017",
 	"description": "This is the default theme, it consists of a dark page background color with a lighter diff region.",
 	"body": [
-		"body {margin: 0 auto; background-color: #171738;}"
+		"body {margin: 0; background-color: #171738; padding: 0;}"
 	],
 	"main": [
-		"#main {position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;}",
-		".diff {font-family:\"Lucida Console\",\"Courier New\",monospace; background-color:#efeae6;}"
+		"#main {position: absolute; top: 0; bottom: 0; left: 0; right: 0; padding: 10px;}",
+		".diff {font-family: \"Lucida Console\", \"Courier New\", monospace; background-color: #efeae6;}"
 	],
 	"diffHeader": [
-		"#diffHeader {position:absolute;top:0;bottom:0;left:0;right:0;padding:10px;}"
+		"#diffHeader {position: absolute; top: 0; bottom: 0; left: 0; right: 0; padding: 10px;}"
 	],
 	"diffBody": [
-		"#diffBody {}",
+		"#diffContainer {clear: left; float: left; width: 100%; overflow-x: scroll;}",
+		"#diffBody {float: left; width: 100%; position: relative; right: 50%;}",
+		"#col1 {float: left; width: 46%; position: relative; left: 52%; overflow-x: scroll;}",
+		"#col2 {float: left; width: 46%; position: relative; left: 52%; overflow-x: scroll;}",
 		"#diffLine {}",
 		".diffChange {font-weight: bold;}",
 		".diffLineAddition {foreground: #ff6b6b; background-color: #4ecdc4;}",

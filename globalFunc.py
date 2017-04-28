@@ -4,6 +4,7 @@ import os
 import sys
 import json
 import config
+from jsonschema import validate
 
 def loadConfig(fileName):
 	path = homeDirectory() + fileName
@@ -37,6 +38,14 @@ def versionsDirectory():
 		path += '/Versions/'
 	return path
 	
+def schemaDirectory():
+	path = os.getcwd()
+	if ("win") in sys.platform:
+		path += '\\Schema\\'
+	elif ("linux") in sys.platform.lower():
+		path += '/Schema/'
+	return path
+	
 def getJsonString(fileName):
 	# returns a json string
 	f = open(fileName, 'r')
@@ -53,3 +62,13 @@ def getFileLineList(fileName):
 		lines.append(line)
 	f.close()
 	return lines
+	
+def validateJson(schema, jsonFile):
+	# validate json string against schema
+	schemaString = getJsonString(schema)
+	jsonString = getJsonString(jsonFile)
+	try:
+		validate(schemaString, jsonString)
+		return 'Valid JSON'
+	except jsonschema.exceptions.ValidationError as e:
+		return 'Invalid JSON'
