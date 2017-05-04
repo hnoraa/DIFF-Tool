@@ -15,9 +15,9 @@ class Theme():
 			if len(self.jsonString) > 0:
 				self.loadTheme(True)
 			else:
-				print 'WARNING: No Theme file has been loaded. Please load one for theme to continue.'
+				print 'WARNING: No Theme file has been loaded. Please load a theme.'
 		else:
-			print 'WARNING: No Theme file has been loaded. Please load one for theme to continue.'
+			print 'WARNING: No Theme file has been loaded. Please load a theme.'
 			
 	def getJsonString(self):
 		# returns a json string from self.themeFile
@@ -72,10 +72,10 @@ class Theme():
 		self.css.append('</style>')
 		
 	def about(self):
-		print '============================================================'
-		print 'About:'
-		print self.name
+		print '='*80
+		print 'About: ' + self.name
 		print 'Created: ' + self.date
 		print 'Author: ' + self.author
 		print self.description
-		print '============================================================'
+		print '='*80
+		print ''

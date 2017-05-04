@@ -1,5 +1,5 @@
 ## Diff Tool
-A small tool for comparing file versions
+A tool for comparing file versions
 
 **NOTE: This is for Python 2.7 but will have a Pyhon 3 branch in the future**
 
@@ -23,22 +23,17 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Windows 10
 * Ubuntu 16.04.2 LTS
 
-## Tasks (Date Indicates Date Task Came To Mind)
-4/28/2017
-* [ ] generate html
-* [ ] possibly load html from a file to generate it and mix with css
-
-4/27/2017
+## To Do 
+* [X] compare two files (.txt files in this first version) for addition and/or subtraction only (in this first version 05/04/2017)
+* [ ] write differences to html file
+* [X] generate html
+* [ ] possibly load html from a file to generate it and mix with css (maybe from XML)
 * [ ] create "project" to keep file versions contained within
 * [ ] zip archive of project contains all file versions
 * [ ] when reading from zip file, determine latest version to compare with currently selected version
 * [ ] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
-
-4/26/2017
 * [X] create JSON schema files for config and theme
 * [X] validate against those schemas to ensure app can run correctly
-
-4/25/2017
 * [X] adjust theme.json structure to be more conducive for translating to css
 * [X] implement saving in config.py (write to json file)
 * [X] load theme json and create basic css structure
@@ -48,6 +43,8 @@ have been set to ignore as a privacy measure to potential users/contributers.
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  5/04/2017 | - Basic HTML generation.                                                                                    |
+|            | - Basic file comparison.                                                                                    |
 |  4/28/2017 | - Validation for JSON schema created and tested against config and theme.                                   |
 |  4/27/2017 | - Created Config JSON schema.                                                                               |
 |            | - Created Theme JSON schema.                                                                                |

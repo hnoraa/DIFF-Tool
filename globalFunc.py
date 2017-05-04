@@ -6,7 +6,11 @@ import json
 import config
 from jsonschema import validate
 
+def quit():
+	sys.exit()
+
 def loadConfig(fileName):
+	# load the config object
 	path = homeDirectory() + fileName
 	conf = config.Config(path)
 	return conf
@@ -39,6 +43,7 @@ def versionsDirectory():
 	return path
 	
 def schemaDirectory():
+	# returns schema directory in OS correct syntax
 	path = os.getcwd()
 	if ("win") in sys.platform:
 		path += '\\Schema\\'
@@ -69,6 +74,16 @@ def validateJson(schema, jsonFile):
 	jsonString = getJsonString(jsonFile)
 	try:
 		validate(schemaString, jsonString)
-		return 'Valid JSON'
+		return True
 	except jsonschema.exceptions.ValidationError as e:
-		return 'Invalid JSON'
+		return False
+		
+# these 2 methods will be rolled into a versioning method
+# right now they're kind of placeholders
+def listFiles(path):
+	# returns a list of files in the specified directory
+    return os.listdir(path)
+
+def getFileNameParts(fileName):
+	# returns list [0]: file name. [1]: extension
+    return os.path.splitext(fileName)

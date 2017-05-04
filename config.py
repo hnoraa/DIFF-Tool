@@ -77,17 +77,18 @@ class Config():
 			self.themes.append(theme)
 		
 	def about(self):
-		print '============================================================'
-		print 'About:'
-		print self.name
+		print '='*80
+		print 'About: ' + self.name
 		print 'Version: ' + self.version
 		print 'Author: ' + self.author
 		print self.description
-		print '============================================================'
+		print '='*80
+		print ''
 		
 	def listThemes(self):
-		print '============================================================'
+		print '='*80
 		print 'Themes:'
 		for i in self.themes:
 			print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
-		print '============================================================'
+		print '='*80
+		print ''
