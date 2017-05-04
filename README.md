@@ -24,6 +24,12 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Ubuntu 16.04.2 LTS
 
 ## To Do 
+* [X] come up with UI for command line
+* [ ] allow user to create a project (means loading a file for the first time
+* [ ] allow user to open a project (opening lists all versions of the 'project' aka file)
+* [ ] allow user to select 2 versions in project to compare
+* [X] allow user to change config items
+* [ ] UI validation (in case incorrect data is entered)
 * [X] compare two files (.txt files in this first version) for addition and/or subtraction only (in this first version 05/04/2017)
 * [ ] write differences to html file
 * [X] generate html
@@ -68,7 +74,8 @@ have been set to ignore as a privacy measure to potential users/contributers.
 	"description": "A file comparing tool",
 	"author": "Aaron Horeth",
 	"appDirectory": "C:\\DiffTool",
-	"versionDirectory": "C:\\DiffTool\\Versions"
+	"versionDirectory": "C:\\DiffTool\\Versions",
+	"schemaDirectory": "C:\\DiffTool\\Schema"
 }
 ```
 * configSchema.json: the schema for proper config file layout
@@ -93,6 +100,10 @@ have been set to ignore as a privacy measure to potential users/contributers.
 		},
 		"versionDirectory": {
 			"description": "Version directory for the application",
+			"type": "string"
+		},
+		"schemaDirectory": {
+			"description": "Schema directory for the application",
 			"type": "string"
 		},
 		"themes": {

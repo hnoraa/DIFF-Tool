@@ -15,5 +15,6 @@
 	"description": "A file comparing tool",
 	"author": "Aaron Horeth",
 	"appDirectory": "C:\\DiffTool",
-	"versionDirectory": "C:\\DiffTool\\Versions"
+	"versionDirectory": "C:\\DiffTool\\Versions",
+	"schemaDirectory": "C:\\DiffTool\\Schema"
 }

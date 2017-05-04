@@ -31,16 +31,23 @@ class Config():
 		self.themes = []
 		self.themeDirectory = ''
 		self.appDirectory = ''
+		self.schemaDirectory = ''
 		self.versionDirectory = ''
 		self.description = ''
 		
 	def updateConfig(self, key, value):
+		if key == "theme":
+			value = ''.join([value, ".json"])
+			
 		f = open(self.configFile, 'r+')
+		
 		jsonString = json.loads(f.read())
 		tmp = jsonString[key]
 		jsonString[key] = value
+		
 		f.seek(0)
 		json.dump(jsonString, f)
+		
 		f.truncate()
 		f.close()
 	
@@ -63,6 +70,7 @@ class Config():
 		self.theme = self.jsonString["theme"]
 		self.themeDirectory = self.jsonString["themeDirectory"]
 		self.appDirectory = self.jsonString["appDirectory"]
+		self.schemaDirectory = self.jsonString["schemaDirectory"]
 		self.versionDirectory = self.jsonString["versionDirectory"]
 		
 	def loadThemes(self, firstLoad=False):
@@ -89,6 +97,9 @@ class Config():
 		print '='*80
 		print 'Themes:'
 		for i in self.themes:
-			print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
+			if i["name"] in self.theme:
+				print ' - Current Theme: ' + i["name"] + ' [File Name: ' + i["file"] + ']'
+			else:
+				print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
 		print '='*80
 		print ''

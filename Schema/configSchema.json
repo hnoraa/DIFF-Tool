@@ -40,6 +40,10 @@
 			"description": "Version of the application",
 			"type": "string"
 		},
+		"schemaDirectory": {
+			"description": "Schema directory for the application",
+			"type": "string"
+		},
 		"themeDirectory": {
 			"description": "Theme directory for the application",
 			"type": "string"
