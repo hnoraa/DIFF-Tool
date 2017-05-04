@@ -4,7 +4,11 @@ import os
 import sys
 import json
 import config
+import datetime
 from jsonschema import validate
+
+def getTodaysDateAsString():
+	return datetime.date.today().strftime("%B %d, %Y")
 
 def quit():
 	sys.exit()

@@ -24,6 +24,11 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Ubuntu 16.04.2 LTS
 
 ## To Do 
+* [ ] project schema
+* [ ] projects directory
+* [ ] projects will be created as json files and a flat file will contain all project names
+* [ ] load project
+* [ ] save project
 * [X] come up with UI for command line
 * [ ] allow user to create a project (means loading a file for the first time
 * [ ] allow user to open a project (opening lists all versions of the 'project' aka file)

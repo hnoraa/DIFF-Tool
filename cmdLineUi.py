@@ -1,6 +1,7 @@
 # Diff Tool - cmdLineUi.py
 # command line user interface
 import globalFunc as glb
+import project as p
 
 class CmdLineUi():
 	def __init__(self, conf):
@@ -54,13 +55,20 @@ class CmdLineUi():
 			print '='*80
 			print 'Create a Project:'
 			print 'Please select from the following options:'
-			print ' - [0] Back'
+			print ' - [0] Create New Project'
+			print ' - [1] Back'
 			print '='*80
 			print ''
 			choice = raw_input("Selection: ")
 			print ''
 			
 			if choice == '0':
+				name = raw_input("Project Name: ")
+				author = raw_input("Project Author: ")
+				desc = raw_input("Project Description: ")
+				prj = p.Project()
+				prj.createProject({"name": name, "author": author, "description": desc})
+			elif choice == '1':
 				# go back
 				q = True
 			else:
