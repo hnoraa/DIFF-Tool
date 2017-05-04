@@ -51,6 +51,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 |------------|-------------------------------------------------------------------------------------------------------------|
 |  5/04/2017 | - Basic HTML generation.                                                                                    |
 |            | - Basic file comparison.                                                                                    |
+|            | - Command Line UI.                                                                                          |
 |  4/28/2017 | - Validation for JSON schema created and tested against config and theme.                                   |
 |  4/27/2017 | - Created Config JSON schema.                                                                               |
 |            | - Created Theme JSON schema.                                                                                |

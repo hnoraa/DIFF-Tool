@@ -1,6 +1,7 @@
 # Diff Tool - cmdLineUi.py
 # command line user interface
 import globalFunc as glb
+
 class CmdLineUi():
 	def __init__(self, conf):
 		self.conf = conf
@@ -21,20 +22,28 @@ class CmdLineUi():
 			print ' - [3] Help'
 			print ' - [4] Quit'
 			print '='*80
+			print ''
 			choice = raw_input("Selection: ")
+			print ''
 			
 			if choice == '0':
+				# create a new project
 				self.createProjectMenu()
 			elif choice == '1':
+				# open a project
 				self.openProjectMenu()
 			elif choice == '2':
+				# configuration
 				self.configMenu()
 			elif choice == '3':
+				# help
 				self.helpMenu()
 			elif choice == '4':
+				# quit
 				print 'Exiting ' + self.conf.name
 				q = True
 			else:
+				# invalid choice
 				print 'Invalid choice, please retry'
 		glb.quit()
 		
@@ -47,11 +56,15 @@ class CmdLineUi():
 			print 'Please select from the following options:'
 			print ' - [0] Back'
 			print '='*80
+			print ''
 			choice = raw_input("Selection: ")
+			print ''
 			
 			if choice == '0':
+				# go back
 				q = True
 			else:
+				# invalid choice
 				print 'Invalid choice, please retry'
 		
 	def openProjectMenu(self):
@@ -61,13 +74,20 @@ class CmdLineUi():
 			print '='*80
 			print 'Open a Project:'
 			print 'Please select from the following options:'
-			print ' - [0] Back'
+			print ' - [0] Select Project'
+			print ' - [1] Back'
 			print '='*80
+			print ''
 			choice = raw_input("Selection: ")
+			print ''
 			
 			if choice == '0':
+				# open a project
+			elif choice == '1':
+				# go back
 				q = True
 			else:
+				# invalid choice
 				print 'Invalid choice, please retry'
 	
 	def configMenu(self):
@@ -83,11 +103,15 @@ class CmdLineUi():
 			print ' - [3] Set Current Theme'
 			print ' - [4] Back'
 			print '='*80
+			print ''
 			choice = raw_input("Selection: ")
+			print ''
 			
 			if choice == '0':
+				# display parameters
 				self.displayParams()
 			elif choice == '1':
+				# change a parameter
 				self.displayParams()
 				
 				# make a change to a parameter
@@ -100,8 +124,10 @@ class CmdLineUi():
 				
 				self.displayParams()
 			elif choice == '2':
+				# display themes
 				self.conf.listThemes()
 			elif choice == '3':
+				# change current theme
 				self.conf.listThemes()
 				theme = raw_input("Selection: ")
 				
@@ -113,8 +139,10 @@ class CmdLineUi():
 				
 				self.conf.listThemes()
 			elif choice == '4':
+				# back
 				q = True
 			else:
+				# invalid choice
 				print 'Invalid choice, please retry'
 	
 	def displayParams(self):
@@ -125,7 +153,6 @@ class CmdLineUi():
 		print '    [appDirectory] - ' + self.conf.appDirectory
 		print '  [themeDirectory] - ' + self.conf.themeDirectory
 		print '[versionDirectory] - ' + self.conf.versionDirectory
-		print self.conf.theme
 		print '='*80
 		print ''
 	
