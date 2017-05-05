@@ -55,6 +55,15 @@ def schemaDirectory():
 		path += '/Schema/'
 	return path
 	
+def projectDirectory():
+	# returns schema directory in OS correct syntax
+	path = os.getcwd()
+	if ("win") in sys.platform:
+		path += '\\Projects\\'
+	elif ("linux") in sys.platform.lower():
+		path += '/Projects/'
+	return path
+	
 def getJsonString(fileName):
 	# returns a json string
 	f = open(fileName, 'r')

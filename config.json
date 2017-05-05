@@ -16,5 +16,6 @@
 	"author": "Aaron Horeth",
 	"appDirectory": "C:\\DiffTool",
 	"versionDirectory": "C:\\DiffTool\\Versions",
-	"schemaDirectory": "C:\\DiffTool\\Schema"
+	"schemaDirectory": "C:\\DiffTool\\Schema",
+	"projectDirectory": "C:\\DiffTool\\Projects"
 }

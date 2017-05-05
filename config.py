@@ -33,6 +33,7 @@ class Config():
 		self.appDirectory = ''
 		self.schemaDirectory = ''
 		self.versionDirectory = ''
+		self.projectDirectory = ''
 		self.description = ''
 		
 	def updateConfig(self, key, value):
@@ -41,10 +42,12 @@ class Config():
 			
 		f = open(self.configFile, 'r+')
 		
+		# find key, replace its value
 		jsonString = json.loads(f.read())
 		tmp = jsonString[key]
 		jsonString[key] = value
 		
+		# find in file contents and replace
 		f.seek(0)
 		json.dump(jsonString, f)
 		
@@ -72,6 +75,7 @@ class Config():
 		self.appDirectory = self.jsonString["appDirectory"]
 		self.schemaDirectory = self.jsonString["schemaDirectory"]
 		self.versionDirectory = self.jsonString["versionDirectory"]
+		self.projectDirectory = self.jsonString["projectDirectory"]
 		
 	def loadThemes(self, firstLoad=False):
 		if firstLoad == False:
@@ -91,7 +95,7 @@ class Config():
 		print 'Author: ' + self.author
 		print self.description
 		print '='*80
-		print ''
+		return ''
 		
 	def listThemes(self):
 		print '='*80
@@ -102,4 +106,4 @@ class Config():
 			else:
 				print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
 		print '='*80
-		print ''
+		return ''

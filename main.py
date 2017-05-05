@@ -3,7 +3,6 @@
 import config, theme, cmdLineUi
 import htmlGen as hg
 import globalFunc as glb
-from jsonschema import validate
 
 # flags
 COMMAND_LINE = True

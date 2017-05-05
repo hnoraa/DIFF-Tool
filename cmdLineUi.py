@@ -8,7 +8,6 @@ class CmdLineUi():
 		self.conf = conf
 		
 	def greet(self):
-		print 'test'
 		print self.conf.about()
 		
 	def mainMenu(self):
@@ -24,7 +23,7 @@ class CmdLineUi():
 			print ' - [4] Quit'
 			print '='*80
 			print ''
-			choice = raw_input("Selection: ")
+			choice = raw_input('Selection: ')
 			print ''
 			
 			if choice == '0':
@@ -52,22 +51,23 @@ class CmdLineUi():
 		q = False
 		
 		while(not q):
-			print '='*80
 			print 'Create a Project:'
+			print '='*80
 			print 'Please select from the following options:'
 			print ' - [0] Create New Project'
 			print ' - [1] Back'
 			print '='*80
 			print ''
-			choice = raw_input("Selection: ")
+			choice = raw_input('Selection: ')
 			print ''
 			
 			if choice == '0':
-				name = raw_input("Project Name: ")
-				author = raw_input("Project Author: ")
-				desc = raw_input("Project Description: ")
+				name = raw_input('Project Name: ')
+				author = raw_input('Project Author: ')
+				desc = raw_input('Project Description: ')
 				prj = p.Project()
-				prj.createProject({"name": name, "author": author, "description": desc})
+				prj.create({'name': name, 'author': author, 'description': desc})
+				prj.save()
 			elif choice == '1':
 				# go back
 				q = True
@@ -79,19 +79,27 @@ class CmdLineUi():
 		q = False
 		
 		while(not q):
-			print '='*80
 			print 'Open a Project:'
+			print '='*80
 			print 'Please select from the following options:'
-			print ' - [0] Select Project'
-			print ' - [1] Back'
+			print ' - [0] List Projects'
+			print ' - [1] Select Project'
+			print ' - [2] Back'
 			print '='*80
 			print ''
-			choice = raw_input("Selection: ")
+			choice = raw_input('Selection: ')
 			print ''
 			
 			if choice == '0':
-				# open a project
+				project = p.Project()
+				project.listProjects()
 			elif choice == '1':
+				# open a project
+				project = raw_input('Project Name: ')
+				prj = p.Project()
+				prj.load(project)
+				print prj.project
+			elif choice == '2':
 				# go back
 				q = True
 			else:
@@ -102,8 +110,8 @@ class CmdLineUi():
 		q = False
 		
 		while(not q):
-			print '='*80
 			print 'Configuration:'
+			print '='*80
 			print 'Please select from the following options:'
 			print ' - [0] List Parameters'
 			print ' - [1] Change a Parameter'
@@ -112,7 +120,7 @@ class CmdLineUi():
 			print ' - [4] Back'
 			print '='*80
 			print ''
-			choice = raw_input("Selection: ")
+			choice = raw_input('Selection: ')
 			print ''
 			
 			if choice == '0':
@@ -123,8 +131,8 @@ class CmdLineUi():
 				self.displayParams()
 				
 				# make a change to a parameter
-				key = raw_input("Parameter: ")
-				value = raw_input("New Value: ")
+				key = raw_input('Parameter: ')
+				value = raw_input('New Value: ')
 				self.conf.updateConfig(key, value)
 				
 				# reload the config file
@@ -137,10 +145,10 @@ class CmdLineUi():
 			elif choice == '3':
 				# change current theme
 				self.conf.listThemes()
-				theme = raw_input("Selection: ")
+				theme = raw_input('Selection: ')
 				
 				# change the current theme
-				self.conf.updateConfig("theme", theme)
+				self.conf.updateConfig('theme', theme)
 				
 				# reload the config file
 				self.conf.loadConfig()
@@ -162,7 +170,8 @@ class CmdLineUi():
 		print '  [themeDirectory] - ' + self.conf.themeDirectory
 		print '[versionDirectory] - ' + self.conf.versionDirectory
 		print '='*80
-		print ''
+		return ''
 	
 	def helpMenu(self):
+		print 'Help:'
 		self.conf.about()

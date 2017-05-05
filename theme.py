@@ -78,4 +78,4 @@ class Theme():
 		print 'Author: ' + self.author
 		print self.description
 		print '='*80
-		print ''
+		return ''

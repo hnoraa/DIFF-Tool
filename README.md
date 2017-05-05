@@ -24,15 +24,20 @@ have been set to ignore as a privacy measure to potential users/contributers.
 * Ubuntu 16.04.2 LTS
 
 ## To Do 
-* [ ] project schema
-* [ ] projects directory
-* [ ] projects will be created as json files and a flat file will contain all project names
-* [ ] load project
-* [ ] save project
+* [ ] increase functionality of diff code, it should look to see if 0 or more characters are different between each line on each file
+* [ ] organize app so common code goes into golbalFunc.py
+* [ ] globalFunc.py should be the only file that loads outside libraries
+* [ ] insure that all config parameters are being used in the app (currently, the directories aren\'t being utilized 05/05/2017)
+* [ ] global project for app (currently opened project)
+* [X] project schema (update config schema)
+* [X] projects directory
+* [X] projects will be created as json files
+* [X] load project
+* [X] save project
 * [X] come up with UI for command line
-* [ ] allow user to create a project (means loading a file for the first time
+* [ ] allow user to create a project (means loading a file for the first time)
 * [ ] allow user to open a project (opening lists all versions of the 'project' aka file)
-* [ ] allow user to select 2 versions in project to compare
+* [ ] allow user to select 2 versions in the project to compare
 * [X] allow user to change config items
 * [ ] UI validation (in case incorrect data is entered)
 * [X] compare two files (.txt files in this first version) for addition and/or subtraction only (in this first version 05/04/2017)
@@ -54,6 +59,9 @@ have been set to ignore as a privacy measure to potential users/contributers.
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  5/05/2017 | - Create and save projects.                                                                                 |
+|            | - Open a project.                                                                                           |
+|            | - Project schema.                                                                                           |
 |  5/04/2017 | - Basic HTML generation.                                                                                    |
 |            | - Basic file comparison.                                                                                    |
 |            | - Command Line UI.                                                                                          |
@@ -71,9 +79,14 @@ have been set to ignore as a privacy measure to potential users/contributers.
 {
 	"theme": "defaultTheme.json",
 	"themeDirectory": "C:\\DiffTool\\Themes",
-	"themes": [
-		{"name": "defaultTheme", "file": "defaultTheme.json"},
-		{"name": "darkTheme", "file": "darkTheme.json"}
+	"themes": [{
+			"name": "defaultTheme",
+			"file": "defaultTheme.json"
+		},
+		{
+			"name": "darkTheme",
+			"file": "darkTheme.json"
+		}
 	],
 	"version": "0.0.1",
 	"name": "Diff Tool",
@@ -81,7 +94,8 @@ have been set to ignore as a privacy measure to potential users/contributers.
 	"author": "Aaron Horeth",
 	"appDirectory": "C:\\DiffTool",
 	"versionDirectory": "C:\\DiffTool\\Versions",
-	"schemaDirectory": "C:\\DiffTool\\Schema"
+	"schemaDirectory": "C:\\DiffTool\\Schema",
+	"projectDirectory": "C:\\DiffTool\\Projects"
 }
 ```
 * configSchema.json: the schema for proper config file layout
@@ -108,10 +122,6 @@ have been set to ignore as a privacy measure to potential users/contributers.
 			"description": "Version directory for the application",
 			"type": "string"
 		},
-		"schemaDirectory": {
-			"description": "Schema directory for the application",
-			"type": "string"
-		},
 		"themes": {
 			"type": "array",
 			"items": {"$ref": "#/definitions/name", "$ref": "#/definitions/file"},
@@ -132,8 +142,16 @@ have been set to ignore as a privacy measure to potential users/contributers.
 			"description": "Version of the application",
 			"type": "string"
 		},
+		"schemaDirectory": {
+			"description": "Schema directory for the application",
+			"type": "string"
+		},
 		"themeDirectory": {
 			"description": "Theme directory for the application",
+			"type": "string"
+		},
+		"projectDirectory": {
+			"description": "Projects directory for the application",
 			"type": "string"
 		},
 		"description": {
@@ -203,7 +221,42 @@ have been set to ignore as a privacy measure to potential users/contributers.
 		}
 	}
 }
-
+```
+* project.json: the json data for projects
+```javascript
+{
+	"description" : "test",
+	"createDate" : "May 05, 2017",
+	"name" : "test",
+	"author" : "test"
+}
+```
+* projectSchema.json: the schema for proper project layout
+```javascript
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Project",
+	"description": "Project objects",
+	"type": "object",
+	"properties": {
+		"name": {
+			"description": "Name of the project",
+			"type": "string"
+		},
+		"author": {
+			"description": "Author of the project",
+			"type": "string"
+		},
+		"description": {
+			"description": "Description of the project",
+			"type": "string"
+		},
+		"createDate": {
+			"description": "Date the project was created",
+			"type": "array"
+		}
+	}
+}
 ```
 
 Table Generator: [Markdown Tables Generator](http://www.tablesgenerator.com/markdown_tables)

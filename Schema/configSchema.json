@@ -48,6 +48,10 @@
 			"description": "Theme directory for the application",
 			"type": "string"
 		},
+		"projectDirectory": {
+			"description": "Projects directory for the application",
+			"type": "string"
+		},
 		"description": {
 			"description": "Description of the application",
 			"type": "string"
