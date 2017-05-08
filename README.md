@@ -10,7 +10,7 @@ this file contains the results of the diff comparison.
 The .gitignore file has been set up to ignore config
 files with a naming convention of \*.local.json so when testing locally, you can copy config.json to 
 config.local.json and use your own directory structure. Also, archive files in the versions directory
-have been set to ignore as a privacy measure to potential users/contributers.
+have been set to ignore as a privacy measure to potential users/contributors.
 
 ## Libraries Used
 * os
@@ -25,7 +25,7 @@ have been set to ignore as a privacy measure to potential users/contributers.
 
 ## To Do 
 * [ ] increase functionality of diff code, it should look to see if 0 or more characters are different between each line on each file
-* [ ] organize app so common code goes into golbalFunc.py
+* [ ] organize app so common code goes into globalFunc.py
 * [ ] globalFunc.py should be the only file that loads outside libraries
 * [ ] insure that all config parameters are being used in the app (currently, the directories aren\'t being utilized 05/05/2017)
 * [ ] global project for app (currently opened project)

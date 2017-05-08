@@ -97,3 +97,7 @@ Versions/*.gzip
 
 # test input .txt files
 *.test.txt
+.idea/codeStyleSettings.xml
+.idea/workspace.xml
+TestGui.py
+/test.html
