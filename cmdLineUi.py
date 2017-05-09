@@ -3,25 +3,33 @@
 import globalFunc as glb
 import project as p
 
-class CmdLineUi():
+
+class CmdLineUi:
 	def __init__(self, conf):
 		self.conf = conf
-		
+	
 	def greet(self):
 		print self.conf.about()
-		
+	
 	def mainMenu(self):
 		q = False
 		
-		while(not q):
-			print '='*80
+		while not q:
+			print '=' * 80
 			print 'Please select from the following options:'
 			print ' - [0] Create a Project'
-			print ' - [1] Open a Project'
-			print ' - [2] Configuration'
-			print ' - [3] Help'
-			print ' - [4] Quit'
-			print '='*80
+			print ' - [1] Manage Projects'
+			print ' - [2] Compare Files [in current project]'
+			print ' - [3] Configuration'
+			print ' - [4] Help'
+			print ' - [5] Quit'
+			print '=' * 80
+			if glb.currentProject is not None:
+				print 'Current Project: ' + glb.currentProject['name']
+				print '=' * 80
+			else:
+				print 'There is no project currently selected. Please open/create a project'
+				print '    using the menu options above [0 - Create], [1 - Manage].'
 			print ''
 			choice = raw_input('Selection: ')
 			print ''
@@ -33,30 +41,31 @@ class CmdLineUi():
 				# open a project
 				self.openProjectMenu()
 			elif choice == '2':
+				self.compareFiles()
+			elif choice == '3':
 				# configuration
 				self.configMenu()
-			elif choice == '3':
+			elif choice == '4':
 				# help
 				self.helpMenu()
-			elif choice == '4':
+			elif choice == '5':
 				# quit
 				print 'Exiting ' + self.conf.name
 				q = True
 			else:
 				# invalid choice
 				print 'Invalid choice, please retry'
-		glb.quit()
-		
+	
 	def createProjectMenu(self):
 		q = False
 		
-		while(not q):
+		while not q:
 			print 'Create a Project:'
-			print '='*80
+			print '=' * 80
 			print 'Please select from the following options:'
 			print ' - [0] Create New Project'
 			print ' - [1] Back'
-			print '='*80
+			print '=' * 80
 			print ''
 			choice = raw_input('Selection: ')
 			print ''
@@ -65,27 +74,31 @@ class CmdLineUi():
 				name = raw_input('Project Name: ')
 				author = raw_input('Project Author: ')
 				desc = raw_input('Project Description: ')
+				file = raw_input('Path to file: ')
 				prj = p.Project()
-				prj.create({'name': name, 'author': author, 'description': desc})
+				prj.create({'name': name, 'author': author, 'description': desc}, file=file)
 				prj.save()
+				print 'Project: ' + name + ' successfully created!'
+				q = True
 			elif choice == '1':
 				# go back
 				q = True
 			else:
 				# invalid choice
 				print 'Invalid choice, please retry'
-		
+	
 	def openProjectMenu(self):
 		q = False
 		
-		while(not q):
-			print 'Open a Project:'
-			print '='*80
+		while not q:
+			print 'Manage Projects:'
+			print '=' * 80
 			print 'Please select from the following options:'
 			print ' - [0] List Projects'
-			print ' - [1] Select Project'
-			print ' - [2] Back'
-			print '='*80
+			print ' - [1] Open Project'
+			print ' - [2] Delete Project'
+			print ' - [3] Back'
+			print '=' * 80
 			print ''
 			choice = raw_input('Selection: ')
 			print ''
@@ -98,27 +111,45 @@ class CmdLineUi():
 				project = raw_input('Project Name: ')
 				prj = p.Project()
 				prj.load(project)
-				print prj.project
+				print prj.project['name'] + ' successfully loaded!'
+				
+				# return to main menu
+				q = True
 			elif choice == '2':
+				# delete project
+				q = True
+			elif choice == '3':
 				# go back
 				q = True
 			else:
 				# invalid choice
 				print 'Invalid choice, please retry'
 	
+	def compareFiles(self):
+		q = False
+		
+		if glb.currentProject is None:
+			print 'There is no project currently selected. Please open/create a project'
+			print '    using the menu options above [0 - Create], [1 - Open].'
+			q = True
+		
+		while not q:
+			print 'Compare files'
+			q = True
+	
 	def configMenu(self):
 		q = False
 		
-		while(not q):
+		while not q:
 			print 'Configuration:'
-			print '='*80
+			print '=' * 80
 			print 'Please select from the following options:'
 			print ' - [0] List Parameters'
 			print ' - [1] Change a Parameter'
 			print ' - [2] List Themes'
 			print ' - [3] Set Current Theme'
 			print ' - [4] Back'
-			print '='*80
+			print '=' * 80
 			print ''
 			choice = raw_input('Selection: ')
 			print ''
@@ -134,10 +165,10 @@ class CmdLineUi():
 				key = raw_input('Parameter: ')
 				value = raw_input('New Value: ')
 				self.conf.updateConfig(key, value)
+				print key.title() + ' successfully updated!'
 				
 				# reload the config file
 				self.conf.loadConfig()
-				
 				self.displayParams()
 			elif choice == '2':
 				# display themes
@@ -152,7 +183,6 @@ class CmdLineUi():
 				
 				# reload the config file
 				self.conf.loadConfig()
-				
 				self.conf.listThemes()
 			elif choice == '4':
 				# back
@@ -162,14 +192,14 @@ class CmdLineUi():
 				print 'Invalid choice, please retry'
 	
 	def displayParams(self):
-		print '='*80
+		print '=' * 80
 		print '          [author] - ' + self.conf.author
 		print '         [version] - ' + self.conf.version
 		print '     [description] - ' + self.conf.description
 		print '    [appDirectory] - ' + self.conf.appDirectory
 		print '  [themeDirectory] - ' + self.conf.themeDirectory
 		print '[versionDirectory] - ' + self.conf.versionDirectory
-		print '='*80
+		print '=' * 80
 		return ''
 	
 	def helpMenu(self):

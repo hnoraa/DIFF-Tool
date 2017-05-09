@@ -2,7 +2,8 @@
 # defines the theme object
 import globalFunc as glb
 
-class Theme():
+
+class Theme:
 	def __init__(self, config):
 		# only parameter is the full path of the config.json file
 		self.themeFile = glb.themesDirectory() + config.theme
@@ -18,12 +19,12 @@ class Theme():
 				print 'WARNING: No Theme file has been loaded. Please load a theme.'
 		else:
 			print 'WARNING: No Theme file has been loaded. Please load a theme.'
-			
+	
 	def getJsonString(self):
 		# returns a json string from self.themeFile
 		self.jsonString = ''
-		self.jsonString = glb.getJsonString(self.themeFile)	
-		
+		self.jsonString = glb.getJsonString(self.themeFile)
+	
 	def clearObject(self):
 		self.name = ''
 		self.date = ''
@@ -34,9 +35,9 @@ class Theme():
 		self.diffHeader = []
 		self.diffBody = []
 		self.css = []
-			
-	def loadTheme(self, firstLoad=False):		
-		if firstLoad == False:
+	
+	def loadTheme(self, firstLoad=False):
+		if not firstLoad:
 			# refresh json string, in case config has changed
 			self.getJsonString()
 		
@@ -49,33 +50,33 @@ class Theme():
 		self.main = self.jsonString["main"]
 		self.diffHeader = self.jsonString["diffHeader"]
 		self.diffBody = self.jsonString["diffBody"]
-		
+	
 	def createTheme(self):
 		self.css.append('<style type="text/css">')
 		
 		# body css
 		for d in self.body:
 			self.css.append(d)
-			
+		
 		# main content area
 		for m in self.main:
 			self.css.append(m)
-			
+		
 		# diff header area
 		for h in self.diffHeader:
 			self.css.append(h)
-			
+		
 		# diff body area
 		for b in self.diffBody:
 			self.css.append(b)
 		
 		self.css.append('</style>')
-		
+	
 	def about(self):
-		print '='*80
+		print '=' * 80
 		print 'About: ' + self.name
 		print 'Created: ' + self.date
 		print 'Author: ' + self.author
 		print self.description
-		print '='*80
+		print '=' * 80
 		return ''

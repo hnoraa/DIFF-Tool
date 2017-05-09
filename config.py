@@ -3,7 +3,8 @@
 import globalFunc as glb
 import json
 
-class Config():
+
+class Config:
 	def __init__(self, path=''):
 		# only parameter is the full path of the config.json file
 		self.configFile = path
@@ -11,7 +12,7 @@ class Config():
 		if len(self.configFile) > 0:
 			# set up config object
 			self.clearObject()
-		
+			
 			# get json string 
 			self.getJsonString()
 			
@@ -22,7 +23,7 @@ class Config():
 			self.loadThemes(True)
 		else:
 			print 'WARNING: No Configuration file has been loaded. Please load one for configuration to continue.'
-			
+	
 	def clearObject(self):
 		self.name = ''
 		self.author = ''
@@ -35,11 +36,11 @@ class Config():
 		self.versionDirectory = ''
 		self.projectDirectory = ''
 		self.description = ''
-		
+	
 	def updateConfig(self, key, value):
 		if key == "theme":
 			value = ''.join([value, ".json"])
-			
+		
 		f = open(self.configFile, 'r+')
 		
 		# find key, replace its value
@@ -57,11 +58,10 @@ class Config():
 	def getJsonString(self):
 		# returns a json string from self.configFile
 		self.jsonString = ''
-		self.jsonString = glb.getJsonString(self.configFile)	
-		
+		self.jsonString = glb.getJsonString(self.configFile)
 	
 	def loadConfig(self, firstLoad=False):
-		if firstLoad == False:
+		if not firstLoad:
 			# refresh json string, in case config has changed
 			self.getJsonString()
 		
@@ -76,9 +76,9 @@ class Config():
 		self.schemaDirectory = self.jsonString["schemaDirectory"]
 		self.versionDirectory = self.jsonString["versionDirectory"]
 		self.projectDirectory = self.jsonString["projectDirectory"]
-		
+	
 	def loadThemes(self, firstLoad=False):
-		if firstLoad == False:
+		if not firstLoad:
 			# refresh json string, in case config has changed
 			self.getJsonString()
 		
@@ -87,23 +87,24 @@ class Config():
 		for i in themes:
 			theme = {"name": i["name"], "file": i["file"]}
 			self.themes.append(theme)
-		
+	
 	def about(self):
-		print '='*80
+		print '=' * 80
+		print glb.getTodaysDateAsString()
 		print 'About: ' + self.name
 		print 'Version: ' + self.version
 		print 'Author: ' + self.author
 		print self.description
-		print '='*80
+		print '=' * 80
 		return ''
-		
+	
 	def listThemes(self):
-		print '='*80
+		print '=' * 80
 		print 'Themes:'
 		for i in self.themes:
 			if i["name"] in self.theme:
 				print ' - Current Theme: ' + i["name"] + ' [File Name: ' + i["file"] + ']'
 			else:
 				print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
-		print '='*80
+		print '=' * 80
 		return ''

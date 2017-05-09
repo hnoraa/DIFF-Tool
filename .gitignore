@@ -101,3 +101,5 @@ Versions/*.gzip
 .idea/workspace.xml
 TestGui.py
 /test.html
+*.zip
+Projects/*.json

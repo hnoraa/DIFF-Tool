@@ -18,25 +18,30 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * json
 * sys
 * jsonschema
+* uuid
+* zipfile
 
 ## Tested on Following OSs
 * Windows 10
 * Ubuntu 16.04.2 LTS
 
-## To Do 
+## To Do
+* [ ] zip files are to be stored in zip directory (currently stored in root directory)
+* [ ] add latest version number to project schema to keep track of latest version index
+* [ ] check to see if project already exists when creating a new project (based on project name only)
 * [ ] increase functionality of diff code, it should look to see if 0 or more characters are different between each line on each file
 * [ ] organize app so common code goes into globalFunc.py
-* [ ] globalFunc.py should be the only file that loads outside libraries
 * [ ] insure that all config parameters are being used in the app (currently, the directories aren\'t being utilized 05/05/2017)
-* [ ] global project for app (currently opened project)
+* [X] global project for app (currently opened project)
 * [X] project schema (update config schema)
 * [X] projects directory
 * [X] projects will be created as json files
 * [X] load project
 * [X] save project
 * [X] come up with UI for command line
-* [ ] allow user to create a project (means loading a file for the first time)
-* [ ] allow user to open a project (opening lists all versions of the 'project' aka file)
+* [X] allow user to create a project (means loading a file for the first time)
+* [X] allow user to open a project (opening lists all versions of the 'project' aka file)
+* [ ] project management ability (edit, rename, delete, update, add new versions, compare)
 * [ ] allow user to select 2 versions in the project to compare
 * [X] allow user to change config items
 * [ ] UI validation (in case incorrect data is entered)
@@ -44,10 +49,10 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * [ ] write differences to html file
 * [X] generate html
 * [ ] possibly load html from a file to generate it and mix with css (maybe from XML)
-* [ ] create "project" to keep file versions contained within
-* [ ] zip archive of project contains all file versions
+* [X] create "project" to keep file versions contained within
+* [X] zip archive of project contains all file versions
 * [ ] when reading from zip file, determine latest version to compare with currently selected version
-* [ ] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
+* [X] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
 * [X] create JSON schema files for config and theme
 * [X] validate against those schemas to ensure app can run correctly
 * [X] adjust theme.json structure to be more conducive for translating to css
@@ -59,6 +64,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  5/09/2017 | - Created zip archives for projects.                                                                        |
+|            | - Naming convention for zipped files and zip files contents created.                                        |
 |  5/05/2017 | - Create and save projects.                                                                                 |
 |            | - Open a project.                                                                                           |
 |            | - Project schema.                                                                                           |
@@ -228,7 +235,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 	"description" : "test",
 	"createDate" : "May 05, 2017",
 	"name" : "test",
-	"author" : "test"
+	"author" : "test",
+	"guid": "f7a905e3-7c7e-419f-b822-37dc86dd3ecf"
 }
 ```
 * projectSchema.json: the schema for proper project layout
@@ -253,7 +261,11 @@ have been set to ignore as a privacy measure to potential users/contributors.
 		},
 		"createDate": {
 			"description": "Date the project was created",
-			"type": "array"
+			"type": "string"
+		},
+		"guid": {
+		    "description": "GUID that identifies the project in the version directory",
+		    "type": "string"
 		}
 	}
 }
