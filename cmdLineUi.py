@@ -71,15 +71,28 @@ class CmdLineUi:
 			print ''
 			
 			if choice == '0':
-				name = raw_input('Project Name: ')
-				author = raw_input('Project Author: ')
-				desc = raw_input('Project Description: ')
-				file = raw_input('Path to file: ')
+				# create a project
 				prj = p.Project()
-				prj.create({'name': name, 'author': author, 'description': desc}, file=file)
-				prj.save()
-				print 'Project: ' + name + ' successfully created!'
-				q = True
+				
+				print 'Creating a new Project...'
+				name = raw_input('Project Name: ')
+				exists = prj.projectExists(name)
+				if exists:
+					print 'Project with name: ' + name + ' already exists!'
+					q = True
+				else:
+					author = raw_input('Project Author: ')
+					desc = raw_input('Project Description: ')
+					f = raw_input('Path to file: ')
+			
+					try:
+						prj.create({'name': name, 'author': author, 'description': desc}, f)
+					except RuntimeError:
+						print 'Project: ' + name + ' not created'
+						print str(RuntimeError.message)
+					finally:
+						print 'Project: ' + name + ' successfully created!'
+						q = True
 			elif choice == '1':
 				# go back
 				q = True
@@ -95,18 +108,25 @@ class CmdLineUi:
 			print '=' * 80
 			print 'Please select from the following options:'
 			print ' - [0] List Projects'
-			print ' - [1] Open Project'
-			print ' - [2] Delete Project'
-			print ' - [3] Back'
+			print ' - [1] Search Projects'
+			print ' - [2] Open Project'
+			print ' - [3] Delete Project'
+			print ' - [4] Back'
 			print '=' * 80
 			print ''
 			choice = raw_input('Selection: ')
 			print ''
 			
 			if choice == '0':
+				# list all projects
 				project = p.Project()
 				project.listProjects()
-			elif choice == '1':
+			if choice == '1':
+				# search for projects (via wildcard)
+				searchString = raw_input('Search for project(s) (*: wildcard): ')
+				print searchString
+				pass
+			elif choice == '2':
 				# open a project
 				project = raw_input('Project Name: ')
 				prj = p.Project()
@@ -115,10 +135,10 @@ class CmdLineUi:
 				
 				# return to main menu
 				q = True
-			elif choice == '2':
+			elif choice == '3':
 				# delete project
 				q = True
-			elif choice == '3':
+			elif choice == '4':
 				# go back
 				q = True
 			else:

@@ -28,10 +28,10 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## To Do
 * [ ] zip files are to be stored in zip directory (currently stored in root directory)
 * [ ] add latest version number to project schema to keep track of latest version index
-* [ ] check to see if project already exists when creating a new project (based on project name only)
+* [X] check to see if project already exists when creating a new project (based on project name only)
 * [ ] increase functionality of diff code, it should look to see if 0 or more characters are different between each line on each file
 * [ ] organize app so common code goes into globalFunc.py
-* [ ] insure that all config parameters are being used in the app (currently, the directories aren\'t being utilized 05/05/2017)
+* [ ] **IMPORTANT: insure that all config parameters are being used in the app (currently, the directories aren\'t being utilized 05/05/2017)**
 * [X] global project for app (currently opened project)
 * [X] project schema (update config schema)
 * [X] projects directory
@@ -66,6 +66,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 |------------|-------------------------------------------------------------------------------------------------------------|
 |  5/09/2017 | - Created zip archives for projects.                                                                        |
 |            | - Naming convention for zipped files and zip files contents created.                                        |
+|            | - Check to see if project name already exists before creating it.                                           |
 |  5/05/2017 | - Create and save projects.                                                                                 |
 |            | - Open a project.                                                                                           |
 |            | - Project schema.                                                                                           |

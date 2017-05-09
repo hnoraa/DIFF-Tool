@@ -29,12 +29,15 @@ class Project:
 		zf = zipfile.ZipFile(self.project['guid'] + '.zip', mode='w')
 		try:
 			zf.write(file, arcname=fn)
+		except zipfile.error:
+			print str(zipfile.error)
+			pass
 		finally:
 			print 'Zip file created!'
 			zf.close()
-			
-		# set current project to newly created project
-		glb.currentProject = self.project
+			self.save()
+			# set current project to newly created project
+			glb.currentProject = self.project
 	
 	def load(self, projectName):
 		# load json into string
@@ -62,3 +65,16 @@ class Project:
 			if f.endswith(".json"):
 				print os.path.splitext(f)[0]
 		return ''
+
+	def projectExists(self, name):
+		files = []
+		for f in os.listdir(glb.homeDirectory() + "Projects"):
+			if f.endswith(".json"):
+				files.append(os.path.splitext(f)[0])
+				
+		if name in files:
+			# the file already exists
+			return True
+		
+		return False
+	
