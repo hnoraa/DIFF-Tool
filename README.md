@@ -20,6 +20,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * jsonschema
 * uuid
 * zipfile
+* re
 
 ## Tested on Following OSs
 * Windows 10
@@ -44,14 +45,14 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * [ ] project management ability (edit, rename, delete, update, add new versions, compare)
 * [ ] allow user to select 2 versions in the project to compare
 * [X] allow user to change config items
-* [ ] UI validation (in case incorrect data is entered)
+* [X] UI validation (in case incorrect data is entered) for command line UI
 * [X] compare two files (.txt files in this first version) for addition and/or subtraction only (in this first version 05/04/2017)
 * [ ] write differences to html file
 * [X] generate html
 * [ ] possibly load html from a file to generate it and mix with css (maybe from XML)
 * [X] create "project" to keep file versions contained within
 * [X] zip archive of project contains all file versions
-* [ ] when reading from zip file, determine latest version to compare with currently selected version
+* [X] when reading from zip file, determine latest version to compare with currently selected version
 * [X] come up with file versioning scheme (i.e. file_v_000_timestamp.txt)
 * [X] create JSON schema files for config and theme
 * [X] validate against those schemas to ensure app can run correctly
@@ -64,6 +65,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  5/10/2017 | - Added versioning logic.                                                                                   |
 |  5/09/2017 | - Created zip archives for projects.                                                                        |
 |            | - Naming convention for zipped files and zip files contents created.                                        |
 |            | - Check to see if project name already exists before creating it.                                           |

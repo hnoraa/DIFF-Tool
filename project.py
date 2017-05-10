@@ -1,6 +1,7 @@
 # Diff Tool - project.py
 # project management
 import globalFunc as glb
+import versionControl as ver
 import json
 import uuid
 import os
@@ -16,7 +17,7 @@ class Project:
 			'guid': ''
 		}
 	
-	def create(self, project, file):
+	def create(self, project, f):
 		# create a project
 		self.project['name'] = project['name']
 		self.project['description'] = project['description']
@@ -25,10 +26,10 @@ class Project:
 		self.project['guid'] = str(uuid.uuid4())
 		
 		# create a zip directory and place file in it
-		fn = os.path.splitext(os.path.basename(file))[0] + '_ver_1' + os.path.splitext(os.path.basename(file))[1]
+		fn = os.path.splitext(os.path.basename(f))[0] + '_ver_1' + os.path.splitext(os.path.basename(f))[1]
 		zf = zipfile.ZipFile(self.project['guid'] + '.zip', mode='w')
 		try:
-			zf.write(file, arcname=fn)
+			zf.write(f, arcname=fn)
 		except zipfile.error:
 			print str(zipfile.error)
 			pass
@@ -77,4 +78,3 @@ class Project:
 			return True
 		
 		return False
-	

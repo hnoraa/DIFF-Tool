@@ -103,3 +103,4 @@ TestGui.py
 /test.html
 *.zip
 Projects/*.json
+/zipTest.py
