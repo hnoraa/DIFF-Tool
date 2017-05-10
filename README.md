@@ -24,7 +24,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 
 ## Tested on Following OSs
 * Windows 10
-* Ubuntu 16.04.2 LTS
+* Ubuntu 16.04.2 LTS <- (Need to continue testing new feeatures on this... (5/10/2017))
 
 ## To Do
 * [ ] zip files are to be stored in zip directory (currently stored in root directory)
