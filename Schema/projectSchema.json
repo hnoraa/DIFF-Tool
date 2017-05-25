@@ -19,6 +19,10 @@
 		"createDate": {
 			"description": "Date the project was created",
 			"type": "array"
+		},
+		"latestVersion": {
+			"description": "The latest version of the file",
+			"type": "integer"
 		}
 	}
 }

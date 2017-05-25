@@ -19,6 +19,10 @@ class VersionControl:
 		curText, curVer = self.getLatestVersion()
 		newVer = curVer + 1
 		
+		# update latest version in json schema and save
+		self.project.project['latestVersion'] = newVer
+		self.project.updateProject(newVer)
+		
 		# split fileName into name and extension
 		fn = os.path.splitext(os.path.basename(fileName))[0]
 		fext = os.path.splitext(os.path.basename(fileName))[1]

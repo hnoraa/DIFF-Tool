@@ -2,14 +2,15 @@
 # command line user interface
 import globalFunc as glb
 import project as p
+from globalFunc import Globals
 
 
 class CmdLineUi:
-	def __init__(self, conf):
-		self.conf = conf
+	def __init__(self, globals):
+		self.g = globals
 	
 	def greet(self):
-		print self.conf.about()
+		print self.g.configuration.about()
 	
 	def mainMenu(self):
 		q = False
@@ -24,8 +25,8 @@ class CmdLineUi:
 			print ' - [4] Help'
 			print ' - [5] Quit'
 			print '=' * 80
-			if glb.currentProject is not None:
-				print 'Current Project: ' + glb.currentProject['name']
+			if self.g.currentProject is not None:
+				print 'Current Project: ' + self.g.currentProject['name']
 				print '=' * 80
 			else:
 				print 'There is no project currently selected. Please open/create a project'
@@ -50,7 +51,7 @@ class CmdLineUi:
 				self.helpMenu()
 			elif choice == '5':
 				# quit
-				print 'Exiting ' + self.conf.name
+				print 'Exiting ' + self.g.configuration.name
 				q = True
 			else:
 				# invalid choice
@@ -86,7 +87,7 @@ class CmdLineUi:
 					f = raw_input('Path to file: ')
 			
 					try:
-						prj.create({'name': name, 'author': author, 'description': desc}, f)
+						prj.create({'name': name, 'author': author, 'description': desc}, f, self.g)
 					except RuntimeError:
 						print 'Project: ' + name + ' not created'
 						print str(RuntimeError.message)
@@ -121,16 +122,16 @@ class CmdLineUi:
 				# list all projects
 				project = p.Project()
 				project.listProjects()
-			if choice == '1':
+			elif choice == '1':
 				# search for projects (via wildcard)
 				searchString = raw_input('Search for project(s) (*: wildcard): ')
 				print searchString
-				pass
+				q = True
 			elif choice == '2':
 				# open a project
 				project = raw_input('Project Name: ')
 				prj = p.Project()
-				prj.load(project)
+				prj.load(project, self.g)
 				print prj.project['name'] + ' successfully loaded!'
 				
 				# return to main menu
@@ -148,7 +149,7 @@ class CmdLineUi:
 	def compareFiles(self):
 		q = False
 		
-		if glb.currentProject is None:
+		if self.g.currentProject is None:
 			print 'There is no project currently selected. Please open/create a project'
 			print '    using the menu options above [0 - Create], [1 - Open].'
 			q = True
@@ -184,26 +185,26 @@ class CmdLineUi:
 				# make a change to a parameter
 				key = raw_input('Parameter: ')
 				value = raw_input('New Value: ')
-				self.conf.updateConfig(key, value)
+				self.g.configuration.updateConfig(key, value)
 				print key.title() + ' successfully updated!'
 				
 				# reload the config file
-				self.conf.loadConfig()
+				self.g.configuration.loadConfig()
 				self.displayParams()
 			elif choice == '2':
 				# display themes
-				self.conf.listThemes()
+				self.g.configuration.listThemes()
 			elif choice == '3':
 				# change current theme
-				self.conf.listThemes()
+				self.g.configuration.listThemes()
 				theme = raw_input('Selection: ')
 				
 				# change the current theme
-				self.conf.updateConfig('theme', theme)
+				self.g.configuration.updateConfig('theme', theme)
 				
 				# reload the config file
-				self.conf.loadConfig()
-				self.conf.listThemes()
+				self.g.configuration.loadConfig()
+				self.g.configuration.listThemes()
 			elif choice == '4':
 				# back
 				q = True
@@ -213,15 +214,15 @@ class CmdLineUi:
 	
 	def displayParams(self):
 		print '=' * 80
-		print '          [author] - ' + self.conf.author
-		print '         [version] - ' + self.conf.version
-		print '     [description] - ' + self.conf.description
-		print '    [appDirectory] - ' + self.conf.appDirectory
-		print '  [themeDirectory] - ' + self.conf.themeDirectory
-		print '[versionDirectory] - ' + self.conf.versionDirectory
+		print '         [version] - ' + self.g.configuration.version
+		print '     [description] - ' + self.g.configuration.description
+		print '          [author] - ' + self.g.configuration.author
+		print '    [appDirectory] - ' + self.g.configuration.appDirectory
+		print '  [themeDirectory] - ' + self.g.configuration.themeDirectory
+		print '[versionDirectory] - ' + self.g.configuration.versionDirectory
 		print '=' * 80
 		return ''
 	
 	def helpMenu(self):
 		print 'Help:'
-		self.conf.about()
+		self.g.configuration.about()

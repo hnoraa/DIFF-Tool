@@ -4,13 +4,27 @@ import os
 import sys
 import json
 import config
+import theme
 import datetime
 import jsonschema
 from jsonschema import validate
 
-# the current project
-currentProject = None
+class Globals:
+	def __init__(self):
+		# the current project, project is loaded via project object
+		self.currentProject = None
 
+		# global config object
+		self.configuration = None
+
+		# global theme
+		self.theme = None
+		
+	def loadConfig(self, fileName):
+		self.configuration = loadConfig(fileName)
+		
+	def loadTheme(self):
+		self.theme = theme.Theme(self.configuration)
 
 def getTodaysDateAsString():
 	# returns todays date as a string
@@ -20,8 +34,8 @@ def getTodaysDateAsString():
 def loadConfig(fileName):
 	# load the config object
 	path = homeDirectory() + fileName
-	conf = config.Config(path)
-	return conf
+	print path
+	return config.Config(path)
 
 
 def homeDirectory():

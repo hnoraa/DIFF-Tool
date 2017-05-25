@@ -14,16 +14,18 @@ class Project:
 			'name': '',
 			'description': '',
 			'createDate': '',
-			'guid': ''
+			'guid': '',
+			'latestVersion': 1
 		}
 	
-	def create(self, project, f):
+	def create(self, project, f, globals):
 		# create a project
 		self.project['name'] = project['name']
 		self.project['description'] = project['description']
 		self.project['author'] = project['author']
 		self.project['createDate'] = glb.getTodaysDateAsString()
 		self.project['guid'] = str(uuid.uuid4())
+		self.project['latestVersion'] = 1
 		
 		# create a zip directory and place file in it
 		fn = os.path.splitext(os.path.basename(f))[0] + '_ver_1' + os.path.splitext(os.path.basename(f))[1]
@@ -38,9 +40,9 @@ class Project:
 			zf.close()
 			self.save()
 			# set current project to newly created project
-			glb.currentProject = self.project
+			globals.currentProject = self.project
 	
-	def load(self, projectName):
+	def load(self, projectName, globals):
 		# load json into string
 		jsonString = glb.getJsonString(glb.projectDirectory() + projectName + '.json')
 		
@@ -50,8 +52,9 @@ class Project:
 		self.project['description'] = jsonString['description']
 		self.project['createDate'] = jsonString['createDate']
 		self.project['guid'] = jsonString['guid']
+		self.project['latestVersion'] = int(jsonString['latestVersion'])
 		
-		glb.currentProject = self.project
+		globals.currentProject = self.project
 	
 	def save(self):
 		# save project as json file
@@ -71,10 +74,27 @@ class Project:
 		files = []
 		for f in os.listdir(glb.homeDirectory() + "Projects"):
 			if f.endswith(".json"):
-				files.append(os.path.splitext(f)[0])
+				files.append(os.path.splitext(f.lower())[0])
 				
-		if name in files:
+		if name.lower() in files:
 			# the file already exists
 			return True
 		
 		return False
+		
+	def updateProject(self, newVersion, globals):
+		f = open(glb.projectDirectory() + self.project['name'] + '.json', 'r+')
+		
+		# find key, replace its value
+		jsonString = json.loads(f.read())
+		tmp = jsonString['latestVersion']
+		jsonString['latestVersion'] = newVersion
+		
+		# find in file contents and replace
+		f.seek(0)
+		json.dump(jsonString, f)
+		
+		f.truncate()
+		f.close()
+		
+		self.load(self.project['name'], globals)
