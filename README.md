@@ -28,8 +28,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 
 ## To Do
 * [ ] optimize code
-* [ ] merge version.py and project.py
-* [ ] zip files are to be stored in zip directory 
+* [X] merge versionControl.py and project.py
+* [X] zip files are to be stored in zip directory
 		(currently stored in root directory)
 * [X] add latest version number to project schema to keep 
 		track of latest version index
@@ -75,6 +75,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date       | Contents                                                                                                    |
 |------------|-------------------------------------------------------------------------------------------------------------|
+|  6/01/2017 | - Merged versionControl.py with project.py.                                                                 |
 |  5/14/2017 | - Created globals class to hold project, config and theme.                                                  |
 |  5/13/2017 | - Added latest version to project schema.                                                                   |
 |            | - Updated project logic so latest version can be updated.                                                   |

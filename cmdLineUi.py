@@ -1,8 +1,6 @@
 # Diff Tool - cmdLineUi.py
 # command line user interface
-import globalFunc as glb
 import project as p
-from globalFunc import Globals
 
 
 class CmdLineUi:
@@ -125,7 +123,6 @@ class CmdLineUi:
 			elif choice == '1':
 				# search for projects (via wildcard)
 				searchString = raw_input('Search for project(s) (*: wildcard): ')
-				print searchString
 				q = True
 			elif choice == '2':
 				# open a project
@@ -138,6 +135,9 @@ class CmdLineUi:
 				q = True
 			elif choice == '3':
 				# delete project
+				# check to see if project exists
+				
+				# return to main menu
 				q = True
 			elif choice == '4':
 				# go back

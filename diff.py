@@ -42,7 +42,7 @@ class Diff:
 		
 		for x in range(0, diffLength):
 			difference = False if linesF1[x] == linesF2[x] else True
-			diffType = "" if difference == False else ("+" if len(linesF1[x]) < len(linesF2[x]) else "-")
+			diffType = "" if difference is False else ("+" if len(linesF1[x]) < len(linesF2[x]) else "-")
 			
 			diffs.append({
 				"firstFile": linesF1[x],

@@ -34,7 +34,6 @@ def getTodaysDateAsString():
 def loadConfig(fileName):
 	# load the config object
 	path = homeDirectory() + fileName
-	print path
 	return config.Config(path)
 
 
