@@ -7,6 +7,7 @@ import os
 import zipfile
 import re
 
+
 class Project:
 	def __init__(self):
 		self.project = {
@@ -17,8 +18,9 @@ class Project:
 			'guid': '',
 			'latestVersion': 0
 		}
+		self.currentDiff = []
 	
-	def create(self, project, f, globals):
+	def create(self, project, f):
 		# create a project
 		self.project['name'] = project['name']
 		self.project['description'] = project['description']
@@ -34,15 +36,15 @@ class Project:
 			zf.write(f, arcname=fn)
 		except zipfile.error:
 			print str(zipfile.error)
+			zf.close()
 			pass
 		finally:
 			print 'Zip file created!'
 			zf.close()
 			self.save()
-			# set current project to newly created project
-			globals.currentProject = self.project
+			self.load(self.project['name'])
 	
-	def load(self, projectName, globals):
+	def load(self, projectName):
 		# load json into string
 		jsonString = glb.getJsonString(glb.projectDirectory() + projectName + '.json')
 		
@@ -53,8 +55,6 @@ class Project:
 		self.project['createDate'] = jsonString['createDate']
 		self.project['guid'] = jsonString['guid']
 		self.project['latestVersion'] = int(jsonString['latestVersion'])
-		
-		globals.currentProject = self.project
 	
 	def save(self):
 		# save project as json file
@@ -82,7 +82,7 @@ class Project:
 		
 		return False
 		
-	def updateProject(self, newVersion, globals):
+	def updateProject(self, newVersion):
 		f = open(glb.projectDirectory() + self.project['name'] + '.json', 'r+')
 		
 		# find key, replace its value
@@ -96,10 +96,11 @@ class Project:
 		
 		f.truncate()
 		f.close()
-		
-		self.load(self.project['name'], globals)
+		self.save()
+		self.load(self.project['name'])
 	
 	def deleteProject(self):
+		self.save()
 		return True
 	
 	def getArchiveName(self):
@@ -122,19 +123,34 @@ class Project:
 		# new version
 		newName = '{0}_ver_{1}{2}'.format(fn, str(newVer), fext)
 		
-		return newName
+		print 'newName: ' + newName
+		print 'fileName: ' + fileName
+		
+		zf = zipfile.ZipFile(self.getArchiveName(), mode='a')
+		try:
+			zf.write(fileName, arcname=newName)
+		except zipfile.error:
+			print str(zipfile.error)
+			zf.close()
+			pass
+		finally:
+			self.save()
+			self.load(self.project['name'])
+			print 'Appended successfully'
+			zf.close()
 	
 	def getFilesInArchive(self):
 		# get list of all files in archive
 		fn = self.getArchiveName()
 		zf = zipfile.ZipFile(fn, 'r')
+		nl = zf.namelist()
+		zf.close()
 		
-		return zf.namelist()
+		return nl
 	
 	def listVersions(self):
 		# get a list of all version numbers in the archive
-		fn = self.getArchiveName()
-		files = self.getFilesInArchive(fn)
+		files = self.getFilesInArchive()
 		versions = []
 		
 		for f in files:
@@ -151,7 +167,7 @@ class Project:
 		
 		# get zip file name from project object
 		fn = self.getArchiveName()
-		files = self.getFilesInArchive(fn)
+		files = self.getFilesInArchive()
 		
 		currentVersionS = ''
 		currentVersionN = -1
@@ -168,3 +184,40 @@ class Project:
 					currentVersionS = f
 		
 		return currentVersionS, currentVersionN
+
+	def compareFiles(self, fList):
+		self.currentDiff = []
+		
+		# open files from archive and compare
+		arc = zipfile.ZipFile(self.getArchiveName(), 'r')
+		linesF1 = arc.open(fList[0]).readlines()
+		linesF1 = [x.strip() for x in linesF1]
+		linesF2 = arc.open(fList[1]).readlines()
+		linesF2 = [x.strip() for x in linesF2]
+		arc.close()
+		
+		# length to iterate over
+		diffLength = len(linesF1) if len(linesF1) > len(linesF2) else len(linesF2)
+		
+		# pad file that has less lines
+		if len(linesF1) > len(linesF2):
+			add = len(linesF1) - len(linesF2)
+			for x in range(0, add):
+				linesF2.append(' ')
+		
+		elif len(linesF1) < len(linesF2):
+			add = len(linesF2) - len(linesF1)
+			for x in range(0, add):
+				linesF1.append(' ')
+		
+		# compare
+		for x in range(0, diffLength):
+			difference = False if linesF1[x] == linesF2[x] else True
+			diffType = "" if difference is False else ("+" if len(linesF1[x]) < len(linesF2[x]) else "-")
+			
+			self.currentDiff.append({
+				"firstFile": linesF1[x],
+				"secondFile": linesF2[x],
+				"difference": difference,
+				"type": diffType
+			})

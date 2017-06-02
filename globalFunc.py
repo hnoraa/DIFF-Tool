@@ -8,11 +8,12 @@ import theme
 import datetime
 import jsonschema
 from jsonschema import validate
+import project as p
 
 class Globals:
 	def __init__(self):
 		# the current project, project is loaded via project object
-		self.currentProject = None
+		self.currentProject = p.Project()
 
 		# global config object
 		self.configuration = None

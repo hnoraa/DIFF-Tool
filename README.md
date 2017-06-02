@@ -12,6 +12,36 @@ files with a naming convention of \*.local.json so when testing locally, you can
 config.local.json and use your own directory structure. Also, archive files in the versions directory
 have been set to ignore as a privacy measure to potential users/contributors.
 
+## Updates
+| Date        | Contents                                                                                                    |
+|-------------|-------------------------------------------------------------------------------------------------------------|
+|  06/02/2017 | - Allow users to upload a new version to project.                                                           |
+|             | - New versions update the current version number in the project.                                            |
+|             | - Fixed project code so global project allows you to use project class methods.                             |
+|             | - Tied in diff code to project code.                                                                        |
+|             | - Allow users to compare 2 files, results are printed to the screen.                                        |
+|  06/01/2017 | - Merged versionControl.py with project.py.                                                                 |
+|  05/14/2017 | - Created globals class to hold project, config and theme.                                                  |
+|  05/13/2017 | - Added latest version to project schema.                                                                   |
+|             | - Updated project logic so latest version can be updated.                                                   |
+|  05/10/2017 | - Added versioning logic.                                                                                   |
+|  05/09/2017 | - Created zip archives for projects.                                                                        |
+|             | - Naming convention for zipped files and zip files contents created.                                        |
+|             | - Check to see if project name already exists before creating it.                                           |
+|  05/05/2017 | - Create and save projects.                                                                                 |
+|             | - Open a project.                                                                                           |
+|             | - Project schema.                                                                                           |
+|  05/04/2017 | - Basic HTML generation.                                                                                    |
+|             | - Basic file comparison.                                                                                    |
+|             | - Command Line UI.                                                                                          |
+|  04/28/2017 | - Validation for JSON schema created and tested against config and theme.                                   |
+|  04/27/2017 | - Created Config JSON schema.                                                                               |
+|             | - Created Theme JSON schema.                                                                                |
+|  04/26/2017 | - Started work on core functionality.                                                                       |
+|  04/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
+|             | - Configuration JSON structure determined.                                                                  |
+|             | - Added checks for Linux/Windows for cross-platform compatibility.                                          |
+
 ## Libraries Used
 * os
 * time
@@ -52,7 +82,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 		(opening lists all versions of the 'project' aka file)
 * [ ] project management ability 
 		(edit, rename, delete, update, add new versions, compare)
-* [ ] allow user to select 2 versions in the project to compare
+* [X] allow user to select 2 versions in the project to compare
 * [X] allow user to change config items
 * [X] UI validation (in case incorrect data is entered) for command line UI
 * [X] compare two files (.txt files in this first version) for addition and/or 
@@ -71,31 +101,6 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * [X] load theme json and create basic css structure
 * [X] decide layout for html output file
 * [X] Windows/Linux cross platform
-
-## Updates
-| Date       | Contents                                                                                                    |
-|------------|-------------------------------------------------------------------------------------------------------------|
-|  6/01/2017 | - Merged versionControl.py with project.py.                                                                 |
-|  5/14/2017 | - Created globals class to hold project, config and theme.                                                  |
-|  5/13/2017 | - Added latest version to project schema.                                                                   |
-|            | - Updated project logic so latest version can be updated.                                                   |
-|  5/10/2017 | - Added versioning logic.                                                                                   |
-|  5/09/2017 | - Created zip archives for projects.                                                                        |
-|            | - Naming convention for zipped files and zip files contents created.                                        |
-|            | - Check to see if project name already exists before creating it.                                           |
-|  5/05/2017 | - Create and save projects.                                                                                 |
-|            | - Open a project.                                                                                           |
-|            | - Project schema.                                                                                           |
-|  5/04/2017 | - Basic HTML generation.                                                                                    |
-|            | - Basic file comparison.                                                                                    |
-|            | - Command Line UI.                                                                                          |
-|  4/28/2017 | - Validation for JSON schema created and tested against config and theme.                                   |
-|  4/27/2017 | - Created Config JSON schema.                                                                               |
-|            | - Created Theme JSON schema.                                                                                |
-|  4/26/2017 | - Started work on core functionality.                                                                       |
-|  4/25/2017 | - Repository created. First implementation of this will be command line only and deal with .txt files only. |
-|            | - Configuration JSON structure determined.                                                                  |
-|            | - Added checks for Linux/Windows for cross-platform compatibility.                                          |
 
 ## JSON File Structure
 * config.json: holds configuration items for the app

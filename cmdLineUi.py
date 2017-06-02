@@ -23,8 +23,8 @@ class CmdLineUi:
 			print ' - [4] Help'
 			print ' - [5] Quit'
 			print '=' * 80
-			if self.g.currentProject is not None:
-				print 'Current Project: ' + self.g.currentProject['name']
+			if len(self.g.currentProject.project['name']) > 0:
+				print 'Current Project: ' + self.g.currentProject.project['name']
 				print '=' * 80
 			else:
 				print 'There is no project currently selected. Please open/create a project'
@@ -71,11 +71,9 @@ class CmdLineUi:
 			
 			if choice == '0':
 				# create a project
-				prj = p.Project()
-				
 				print 'Creating a new Project...'
 				name = raw_input('Project Name: ')
-				exists = prj.projectExists(name)
+				exists = self.g.currentProject.projectExists(name)
 				if exists:
 					print 'Project with name: ' + name + ' already exists!'
 					q = True
@@ -85,7 +83,7 @@ class CmdLineUi:
 					f = raw_input('Path to file: ')
 			
 					try:
-						prj.create({'name': name, 'author': author, 'description': desc}, f, self.g)
+						self.g.currentProject.create({'name': name, 'author': author, 'description': desc}, f)
 					except RuntimeError:
 						print 'Project: ' + name + ' not created'
 						print str(RuntimeError.message)
@@ -118,8 +116,7 @@ class CmdLineUi:
 			
 			if choice == '0':
 				# list all projects
-				project = p.Project()
-				project.listProjects()
+				self.g.currentProject.listProjects()
 			elif choice == '1':
 				# search for projects (via wildcard)
 				searchString = raw_input('Search for project(s) (*: wildcard): ')
@@ -127,9 +124,8 @@ class CmdLineUi:
 			elif choice == '2':
 				# open a project
 				project = raw_input('Project Name: ')
-				prj = p.Project()
-				prj.load(project, self.g)
-				print prj.project['name'] + ' successfully loaded!'
+				self.g.currentProject.load(project)
+				print self.g.currentProject.project['name'] + ' successfully loaded!'
 				
 				# return to main menu
 				q = True
@@ -155,8 +151,102 @@ class CmdLineUi:
 			q = True
 		
 		while not q:
-			print 'Compare files'
-			q = True
+			print '=' * 80
+			print 'Please select from the following options:'
+			print ' - [0] Compare Versions'
+			print ' - [1] Upload New Version'
+			print ' - [2] Back'
+			print '=' * 80
+			print 'Current Project: ' + self.g.currentProject.project['name']
+			print '=' * 80
+			print ''
+			choice = raw_input('Selection: ')
+			print ''
+			
+			if choice == '0':
+				# compare versions
+				self.compareVersions()
+			elif choice == '1':
+				# add version to project
+				self.uploadVersion()
+			elif choice == '2':
+				# go back
+				q = True
+			else:
+				# invalid choice
+				print 'Invalid choice, please retry'
+	
+	def compareVersions(self):
+		# compare 2 versions
+		q = False
+		
+		lst = self.g.currentProject.getFilesInArchive()
+		vr = self.g.currentProject.listVersions()
+		
+		while not q:
+			print 'Compare Versions: '
+			print '=' * 80
+			print 'Documents in Project: '
+			for l in range(len(lst)):
+				print '[' + str(vr[l]) + '] ' + lst[l]
+			print ''
+			print 'Select 2 Versions to Compare (ex: 1,2)'
+			print '=' * 80
+			print ''
+			choice = raw_input('Selection: ')
+			print ''
+			vers = map(int, choice.split(','))
+			
+			if set(vers).issubset(vr):
+				if len(vers) > 2 or len(vers) <= 1:
+					print 'You can only compare 2 versions at a time.'
+				
+				print 'comparing...'
+				# get files
+				files = [lst[vers[0]-1], lst[vers[1]-1]]
+				self.g.currentProject.compareFiles(files)
+				for i in range(len(self.g.currentProject.currentDiff)):
+					print self.g.currentProject.currentDiff[i]
+				q = True
+			else:
+				print choice + ' is not correct'
+				q = True
+			
+			
+	
+	def uploadVersion(self):
+		# upload a new version
+		q = False
+		
+		while not q:
+			print 'Upload to Project:'
+			print '=' * 80
+			print 'Please select from the following options:'
+			print ' - [0] Upload a New Version'
+			print ' - [1] Back'
+			print '=' * 80
+			print ''
+			choice = raw_input('Selection: ')
+			print ''
+			
+			if choice == '0':
+				print 'Uploading a New Version...'
+				
+				f = raw_input('Path to file: ')
+				try:
+					self.g.currentProject.versionDocument(f)
+				except RuntimeError:
+					print 'File: ' + f + ' not uploaded to project ' + self.g.currentProject.project['name']
+					print str(RuntimeError.message)
+				finally:
+					print 'File: ' + f + ' successfully uploaded to project ' + self.g.currentProject.project['name'] + '!'
+					q = True
+			elif choice == '1':
+				# go back
+				q = True
+			else:
+				# invalid choice
+				print 'Invalid choice, please retry'
 	
 	def configMenu(self):
 		q = False
