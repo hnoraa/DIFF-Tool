@@ -10,6 +10,7 @@ import jsonschema
 from jsonschema import validate
 import project as p
 
+
 class Globals:
 	def __init__(self):
 		# the current project, project is loaded via project object

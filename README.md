@@ -15,6 +15,9 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date        | Contents                                                                                                    |
 |-------------|-------------------------------------------------------------------------------------------------------------|
+|  06/09/2017 | - Tied together diff code with html generation code.                                                        |
+|  06/08/2017 | - Fixing html layout, working on generating html docs.                                                      |
+|             | - Ability to generate html from command line ui.                                                            |
 |  06/02/2017 | - Allow users to upload a new version to project.                                                           |
 |             | - New versions update the current version number in the project.                                            |
 |             | - Fixed project code so global project allows you to use project class methods.                             |
@@ -57,6 +60,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * Ubuntu 16.04.2 LTS
 
 ## To Do
+* [X] if no project is loaded, dont allow user to access compare option
+* [X] project info in html diff header div
 * [ ] optimize code
 * [X] merge versionControl.py and project.py
 * [X] zip files are to be stored in zip directory
@@ -87,7 +92,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * [X] UI validation (in case incorrect data is entered) for command line UI
 * [X] compare two files (.txt files in this first version) for addition and/or 
 		subtraction only (in this first version 05/04/2017)
-* [ ] write differences to html file
+* [X] write differences to html file
 * [X] generate html
 * [X] create "project" to keep file versions contained within
 * [X] zip archive of project contains all file versions

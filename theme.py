@@ -56,19 +56,19 @@ class Theme:
 		
 		# body css
 		for d in self.body:
-			self.css.append(d)
+			self.css.append('\t' + d)
 		
 		# main content area
 		for m in self.main:
-			self.css.append(m)
+			self.css.append('\t' + m)
 		
 		# diff header area
 		for h in self.diffHeader:
-			self.css.append(h)
+			self.css.append('\t' + h)
 		
 		# diff body area
 		for b in self.diffBody:
-			self.css.append(b)
+			self.css.append('\t' + b)
 		
 		self.css.append('</style>')
 	

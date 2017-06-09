@@ -104,3 +104,4 @@ TestGui.py
 *.zip
 Projects/*.json
 /zipTest.py
+Themes/test_layout.html

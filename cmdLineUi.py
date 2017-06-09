@@ -1,11 +1,12 @@
 # Diff Tool - cmdLineUi.py
 # command line user interface
-import project as p
+import htmlGen as h
 
 
 class CmdLineUi:
 	def __init__(self, globals):
 		self.g = globals
+		self.htm = None
 	
 	def greet(self):
 		print self.g.configuration.about()
@@ -180,6 +181,11 @@ class CmdLineUi:
 		# compare 2 versions
 		q = False
 		
+		if self.g.currentProject is None:
+			print 'There is no project currently selected. Please open/create a project'
+			print '    using the menu options above [0 - Create], [1 - Open].'
+			q = True
+		
 		lst = self.g.currentProject.getFilesInArchive()
 		vr = self.g.currentProject.listVersions()
 		
@@ -205,8 +211,13 @@ class CmdLineUi:
 				# get files
 				files = [lst[vers[0]-1], lst[vers[1]-1]]
 				self.g.currentProject.compareFiles(files)
-				for i in range(len(self.g.currentProject.currentDiff)):
-					print self.g.currentProject.currentDiff[i]
+				
+				info = 'Project: ' + self.g.currentProject.project["name"] + '<br /> Comparing Versions: [' + str(vers[0]) + '] and [' + str(vers[1]) + ']<br />'
+				self.htm = h.HtmlGen(self.g.theme, info, self.g.currentProject.currentDiff)
+				self.htm.gen()
+				self.htm.save()
+				
+				print 'HTML doc created...'
 				q = True
 			else:
 				print choice + ' is not correct'

@@ -31,10 +31,12 @@ else:
 # toggle between command line & GUI
 if COMMAND_LINE:
 	if DEBUG:
+		import htmlGen as hm
 		# debugging area for testing new features quickly
 		print "Testing Diff Tool..."
-		print globals.configuration
-	
+		print globals.configuration.theme
+		print globals.theme.name
+		
 	cmdLn = cmdLineUi.CmdLineUi(globals)
 	cmdLn.greet()
 	cmdLn.mainMenu()
