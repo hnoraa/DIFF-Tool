@@ -8,6 +8,7 @@ class Config:
 	def __init__(self, path=''):
 		# only parameter is the full path of the config.json file
 		self.configFile = path
+		self.jsonString = ''
 		
 		if len(self.configFile) > 0:
 			# set up config object
@@ -23,6 +24,7 @@ class Config:
 			self.loadThemes(True)
 		else:
 			print 'WARNING: No Configuration file has been loaded. Please load one for configuration to continue.'
+			pass
 	
 	def clearObject(self):
 		self.name = ''
@@ -40,24 +42,11 @@ class Config:
 	def updateConfig(self, key, value):
 		if key == "theme":
 			value = ''.join([value, ".json"])
-		
-		f = open(self.configFile, 'r+')
-		
-		# find key, replace its value
-		jsonString = json.loads(f.read())
-		tmp = jsonString[key]
-		jsonString[key] = value
-		
-		# find in file contents and replace
-		f.seek(0)
-		json.dump(jsonString, f)
-		
-		f.truncate()
-		f.close()
+			
+		glb.updateJsonConfig(self.configFile, key, value)
 	
 	def getJsonString(self):
 		# returns a json string from self.configFile
-		self.jsonString = ''
 		self.jsonString = glb.getJsonString(self.configFile)
 	
 	def loadConfig(self, firstLoad=False):
@@ -103,8 +92,9 @@ class Config:
 		print 'Themes:'
 		for i in self.themes:
 			if i["name"] in self.theme:
-				print ' - Current Theme: ' + i["name"] + ' [File Name: ' + i["file"] + ']'
+				msg = ' - Current Theme: '
 			else:
-				print ' - ' + i["name"] + ' [File Name: ' + i["file"] + ']'
+				msg = ' - '
+			print msg + i["name"] + ' [File Name: ' + i["file"] + ']'
 		print '=' * 80
 		return ''

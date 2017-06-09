@@ -28,6 +28,7 @@ class Globals:
 	def loadTheme(self):
 		self.theme = theme.Theme(self.configuration)
 
+
 def getTodaysDateAsString():
 	# returns todays date as a string
 	return datetime.date.today().strftime("%B %d, %Y")
@@ -91,10 +92,15 @@ def projectDirectory():
 
 def getJsonString(fn):
 	# returns a json string
-	f = open(fn, 'r')
-	jsonString = json.loads(f.read())
-	f.close()
-	return jsonString
+	try:
+		f = open(fn, 'r')
+		jsonString = json.loads(f.read())
+	except IOError as e:
+		print e.message
+		jsonString = None
+	finally:
+		f.close()
+		return jsonString
 
 
 def getFileLineList(fn):
@@ -102,7 +108,6 @@ def getFileLineList(fn):
 	lines = []
 	f = open(fn, 'r')
 	for line in f:
-		line = line.strip()
 		lines.append(line)
 	f.close()
 	return lines
@@ -118,3 +123,22 @@ def validateJson(schema, jsonFile):
 		return True
 	except jsonschema.exceptions.ValidationError as e:
 		return False
+
+
+def updateJsonConfig(configFile, key, value):
+	# update a configuration parameter in the given config file
+	try:
+		f = open(configFile, 'r+')
+		
+		# find key, replace its value
+		jsonString = json.loads(f.read())
+		jsonString[key] = value
+		
+		# find in file contents and replace
+		f.seek(0)
+		json.dump(jsonString, f)
+	except IOError as e:
+		print e.message
+	finally:
+		f.truncate()
+		f.close()

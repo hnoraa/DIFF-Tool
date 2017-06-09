@@ -4,8 +4,8 @@ import htmlGen as h
 
 
 class CmdLineUi:
-	def __init__(self, globals):
-		self.g = globals
+	def __init__(self, glbs):
+		self.g = glbs
 		self.htm = None
 	
 	def greet(self):
@@ -75,6 +75,7 @@ class CmdLineUi:
 				print 'Creating a new Project...'
 				name = raw_input('Project Name: ')
 				exists = self.g.currentProject.projectExists(name)
+				
 				if exists:
 					print 'Project with name: ' + name + ' already exists!'
 					q = True
@@ -109,7 +110,8 @@ class CmdLineUi:
 			print ' - [1] Search Projects'
 			print ' - [2] Open Project'
 			print ' - [3] Delete Project'
-			print ' - [4] Back'
+			print ' - [4] Edit Current Project Information'
+			print ' - [5] Back'
 			print '=' * 80
 			print ''
 			choice = raw_input('Selection: ')
@@ -133,20 +135,43 @@ class CmdLineUi:
 			elif choice == '3':
 				# delete project
 				# check to see if project exists
-				
-				# return to main menu
-				q = True
+				if self.g.currentProject is None or len(self.g.currentProject.project['name']) < 1:
+					print 'There is no project currently selected. Please open/create a project'
+					print '    using the menu options above [0 - Create], [1 - Open].'
+					q = True
+				else:
+					# return to main menu
+					print 'Project successfully deleted!'
+					q = True
 			elif choice == '4':
+				# edit project parameters
+				if self.g.currentProject is None or len(self.g.currentProject.project['name']) < 1:
+					print 'There is no project currently selected. Please open/create a project'
+					print '    using the menu options above [0 - Create], [1 - Open].'
+					q = True
+				else:
+					# change a parameter
+					self.displayProjectParams()
+					
+					# make a change to a parameter
+					key = raw_input('Parameter: ')
+					value = raw_input('New Value: ')
+					self.g.currentProject.editProject(key, value)
+					print key.title() + ' successfully updated!'
+					
+					# reload the config file
+					self.displayProjectParams()
+			elif choice == '5':
 				# go back
 				q = True
 			else:
 				# invalid choice
 				print 'Invalid choice, please retry'
-	
+		
 	def compareFiles(self):
 		q = False
 		
-		if self.g.currentProject is None:
+		if self.g.currentProject is None or len(self.g.currentProject.project['name']) < 1:
 			print 'There is no project currently selected. Please open/create a project'
 			print '    using the menu options above [0 - Create], [1 - Open].'
 			q = True
@@ -181,7 +206,7 @@ class CmdLineUi:
 		# compare 2 versions
 		q = False
 		
-		if self.g.currentProject is None:
+		if self.g.currentProject is None or len(self.g.currentProject.project['name']) < 1:
 			print 'There is no project currently selected. Please open/create a project'
 			print '    using the menu options above [0 - Create], [1 - Open].'
 			q = True
@@ -222,8 +247,6 @@ class CmdLineUi:
 			else:
 				print choice + ' is not correct'
 				q = True
-			
-			
 	
 	def uploadVersion(self):
 		# upload a new version
@@ -321,6 +344,14 @@ class CmdLineUi:
 		print '    [appDirectory] - ' + self.g.configuration.appDirectory
 		print '  [themeDirectory] - ' + self.g.configuration.themeDirectory
 		print '[versionDirectory] - ' + self.g.configuration.versionDirectory
+		print '=' * 80
+		return ''
+	
+	def displayProjectParams(self):
+		print '=' * 80
+		print '            [name] - ' + self.g.currentProject.project["name"]
+		print '          [author] - ' + self.g.currentProject.project["author"]
+		print '     [description] - ' + self.g.currentProject.project["description"]
 		print '=' * 80
 		return ''
 	

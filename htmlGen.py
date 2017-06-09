@@ -77,6 +77,10 @@ class HtmlGen:
 	
 	def save(self):
 		# save HTML file
-		f = open("test.html", "w")
-		f.write(self.doc)
-		f.close()
+		try:
+			f = open("test.html", "w")
+			f.write(self.doc)
+		except IOError as e:
+			print e
+		finally:
+			f.close()

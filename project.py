@@ -36,13 +36,10 @@ class Project:
 			zf.write(f, arcname=fn)
 		except zipfile.error:
 			print str(zipfile.error)
-			zf.close()
-			pass
 		finally:
 			print 'Zip file created!'
 			zf.close()
 			self.save()
-			self.load(self.project['name'])
 	
 	def load(self, projectName):
 		# load json into string
@@ -57,11 +54,16 @@ class Project:
 		self.project['latestVersion'] = int(jsonString['latestVersion'])
 	
 	def save(self):
-		# save project as json file
-		obj = json.dumps(self.project)
-		f = open(glb.projectDirectory() + self.project['name'] + '.json', 'w')
-		f.write(obj)
-		f.close()
+		try:
+			# save project as json file
+			obj = json.dumps(self.project)
+			f = open(glb.projectDirectory() + self.project['name'] + '.json', 'w')
+			f.write(obj)
+		except IOError as e:
+			print e.message
+		finally:
+			f.close()
+			self.load(self.project['name'])
 	
 	def listProjects(self):
 		# list the projects in the projects directory
@@ -81,40 +83,40 @@ class Project:
 			return True
 		
 		return False
+
+	def editProject(self, key, value, permission=False):
+		# edit the project config
+		if (key == 'latestVersion' or key == 'guid' or key == 'createDate')\
+				and not permission:
+			print 'Parameter restricted'
+			return ''
 		
-	def updateProject(self, newVersion):
-		f = open(glb.projectDirectory() + self.project['name'] + '.json', 'r+')
+		if key == 'name':
+			name = self.project['name']
+			self.project['name'] = value
+			self.save()
+			
+			# delete old project file
+			os.remove(glb.projectDirectory() + name + '.json')
+
+		cf = glb.projectDirectory() + self.project['name'] + '.json'
+		glb.updateJsonConfig(cf, key, value)
 		
-		# find key, replace its value
-		jsonString = json.loads(f.read())
-		tmp = jsonString['latestVersion']
-		jsonString['latestVersion'] = newVersion
-		
-		# find in file contents and replace
-		f.seek(0)
-		json.dump(jsonString, f)
-		
-		f.truncate()
-		f.close()
-		self.save()
+		# reload project
 		self.load(self.project['name'])
-	
+		
 	def deleteProject(self):
-		self.save()
+		# first delete project version file, then delete project json file
 		return True
-	
-	def getArchiveName(self):
-		# get the name of the archive for the project
-		return glb.versionsDirectory() + self.project['guid'] + '.zip'
 	
 	def versionDocument(self, fileName):
 		# add a version to the new document
-		curText, curVer = self.getLatestVersion()
+		curVer = self.getLatestVersion()
 		newVer = curVer + 1
 		
 		# update latest version in json schema and save
 		self.project['latestVersion'] = newVer
-		self.updateProject(newVer)
+		self.editProject('latestVersion', newVer, permission=True)
 		
 		# split fileName into name and extension
 		fn = os.path.splitext(os.path.basename(fileName))[0]
@@ -123,30 +125,28 @@ class Project:
 		# new version
 		newName = '{0}_ver_{1}{2}'.format(fn, str(newVer), fext)
 		
-		print 'newName: ' + newName
-		print 'fileName: ' + fileName
-		
 		zf = zipfile.ZipFile(self.getArchiveName(), mode='a')
 		try:
 			zf.write(fileName, arcname=newName)
 		except zipfile.error:
 			print str(zipfile.error)
-			zf.close()
-			pass
 		finally:
 			self.save()
-			self.load(self.project['name'])
 			print 'Appended successfully'
 			zf.close()
 	
 	def getFilesInArchive(self):
 		# get list of all files in archive
-		fn = self.getArchiveName()
-		zf = zipfile.ZipFile(fn, 'r')
-		nl = zf.namelist()
-		zf.close()
-		
-		return nl
+		try:
+			fn = glb.versionsDirectory() + self.project['guid'] + '.zip'
+			zf = zipfile.ZipFile(fn, 'r')
+			nl = zf.namelist()
+		except IOError as e:
+			print e.message
+			nl = None
+		finally:
+			zf.close()
+			return nl
 	
 	def listVersions(self):
 		# get a list of all version numbers in the archive
@@ -166,11 +166,9 @@ class Project:
 		# version will be in match.groups[0]
 		
 		# get zip file name from project object
-		fn = self.getArchiveName()
 		files = self.getFilesInArchive()
 		
-		currentVersionS = ''
-		currentVersionN = -1
+		current = -1
 		search = '_ver_'
 		
 		for f in files:
@@ -179,11 +177,10 @@ class Project:
 				# there could be multiple _ver_ instances on the file, take the last
 				nums = re.findall(r'_ver_([0-9]*)', f)
 				ver = int(nums[len(nums) - 1])
-				if ver > currentVersionN:
-					currentVersionN = ver
-					currentVersionS = f
+				if ver > current:
+					current = ver
 		
-		return currentVersionS, currentVersionN
+		return current
 
 	def compareFiles(self, fList):
 		self.currentDiff = []

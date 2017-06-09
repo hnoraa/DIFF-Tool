@@ -7,6 +7,7 @@ class Theme:
 	def __init__(self, config):
 		# only parameter is the full path of the config.json file
 		self.themeFile = glb.themesDirectory() + config.theme
+		self.jsonString = ''
 		
 		if len(self.themeFile) > 0:
 			self.clearObject()
@@ -17,12 +18,13 @@ class Theme:
 				self.loadTheme(True)
 			else:
 				print 'WARNING: No Theme file has been loaded. Please load a theme.'
+				pass
 		else:
 			print 'WARNING: No Theme file has been loaded. Please load a theme.'
+			pass
 	
 	def getJsonString(self):
 		# returns a json string from self.themeFile
-		self.jsonString = ''
 		self.jsonString = glb.getJsonString(self.themeFile)
 	
 	def clearObject(self):

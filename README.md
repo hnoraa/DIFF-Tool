@@ -1,7 +1,7 @@
 ## Diff Tool
 A tool for comparing file versions
 
-**NOTE: This is for Python 2.7 but will have a Pyhon 3 branch in the future**
+**NOTE: This is for Python 2.7 but will have a Python 3 branch in the future**
 
 ## Description
 Diff Tool is a tool for comparing 2 different versions of the same file. It produces an .html file as output
@@ -16,6 +16,9 @@ have been set to ignore as a privacy measure to potential users/contributors.
 | Date        | Contents                                                                                                    |
 |-------------|-------------------------------------------------------------------------------------------------------------|
 |  06/09/2017 | - Tied together diff code with html generation code.                                                        |
+|             | - Fixed default theme css.                                                                                  |
+|             | - Allow users to edit project parameters (including name which re-creates the file with the new name).      |
+|             | - Cleaned up existing project code.                                                                         |
 |  06/08/2017 | - Fixing html layout, working on generating html docs.                                                      |
 |             | - Ability to generate html from command line ui.                                                            |
 |  06/02/2017 | - Allow users to upload a new version to project.                                                           |
@@ -60,9 +63,11 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * Ubuntu 16.04.2 LTS
 
 ## To Do
+* [ ] ability to delete a project
+* [ ] search projects based on search string
+* [X] make sure file loading and other operations have try catch statements
 * [X] if no project is loaded, dont allow user to access compare option
 * [X] project info in html diff header div
-* [ ] optimize code
 * [X] merge versionControl.py and project.py
 * [X] zip files are to be stored in zip directory
 		(currently stored in root directory)
@@ -72,7 +77,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 		(based on project name only)
 * [ ] increase functionality of diff code, it should look to see if 0 or 
 		more characters are different between each line on each file
-* [ ] organize app so common code goes into globalFunc.py
+* [X] organize app so common code goes into globalFunc.py
 * [ ] **IMPORTANT: insure that all config parameters are being used in the app 
 		(currently, the directories aren\'t being utilized 05/05/2017)**
 * [X] global project for app (currently opened project)
@@ -85,8 +90,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * [X] allow user to create a project (means loading a file for the first time)
 * [X] allow user to open a project 
 		(opening lists all versions of the 'project' aka file)
-* [ ] project management ability 
-		(edit, rename, delete, update, add new versions, compare)
+* [X] project management ability
+		(edit, rename, update, add new versions, compare)
 * [X] allow user to select 2 versions in the project to compare
 * [X] allow user to change config items
 * [X] UI validation (in case incorrect data is entered) for command line UI
