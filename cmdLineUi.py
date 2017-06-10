@@ -248,7 +248,7 @@ class CmdLineUi:
 				self.g.currentProject.compareFiles(files)
 				
 				info = 'Project: ' + self.g.currentProject.project["name"] + '<br /> Comparing Versions: [' + str(vers[0]) + '] and [' + str(vers[1]) + ']<br />'
-				self.htm = h.HtmlGen(self.g.theme, info, self.g.currentProject.currentDiff)
+				self.htm = h.HtmlGen(self.g.theme, info, self.g.currentProject.currentDiff, self.g.currentProject.project['name'])
 				self.htm.gen()
 				self.htm.save(self.g.currentProject.project["name"])
 				

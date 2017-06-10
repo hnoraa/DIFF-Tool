@@ -65,10 +65,11 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * Ubuntu 16.04.2 LTS
 
 ## To Do
-* [ ] add project name to title in html doc
-* [ ] lines with just blank space don't show up on html doc
+* [ ] remove directories from config object
+* [X] add project name to title in html doc
+* [X] lines with just blank space don't show up on html doc
 * [X] give html doc the name of the project
-* [ ] where should html docs go?
+* [X] where should html docs go?
 * [X] when loading a project in Linux, file name is case sensitive
 * [X] ability to delete a project
 * [X] search projects based on search string
@@ -85,7 +86,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * [ ] increase functionality of diff code, it should look to see if 0 or 
 		more characters are different between each line on each file
 * [X] organize app so common code goes into globalFunc.py
-* [ ] **IMPORTANT: insure that all config parameters are being used in the app 
+* [X] **IMPORTANT: insure that all config parameters are being used in the app 
 		(currently, the directories aren\'t being utilized 05/05/2017)**
 * [X] global project for app (currently opened project)
 * [X] project schema (update config schema)

@@ -4,17 +4,19 @@ import globalFunc as glb
 
 
 class HtmlGen:
-	def __init__(self, theme, info, diffs):
+	def __init__(self, theme, info, diffs, projectName):
 		self.theme = theme
 		self.theme.createTheme()
 		self.css = self.theme.css
 		self.info = info
 		self.doc = ''
 		self.diffs = diffs
+		self.projectName = projectName
 	
 	def gen(self):
 		# generate HTML file
-		self.doc = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<title>Diff Tool</title>\n'
+		self.doc = '<!DOCTYPE html>\n<html lang="en">\n<head>\n<title>Diff Tool-' \
+			+ self.projectName + '</title>\n'
 		divEnd = '</div>\n'
 		br = '<br />\n'
 		
@@ -72,7 +74,7 @@ class HtmlGen:
 	def save(self, fileName):
 		# save HTML file
 		try:
-			f = open(glb.homeDirectory() + fileName + ".html", "w")
+			f = open(glb.themesDirectory() + fileName + ".html", "w")
 			f.write(self.doc)
 		except IOError as e:
 			print e

@@ -52,7 +52,7 @@ def homeDirectory():
 
 def themesDirectory():
 	# returns themes directory in OS correct syntax
-	path = os.getcwd()
+	path = homeDirectory()
 	if "win" in sys.platform:
 		path += '\\Themes\\'
 	elif "linux" in sys.platform.lower():
@@ -60,9 +60,9 @@ def themesDirectory():
 	return path
 
 
-def versionsDirectory():
+def versionsDirectory(config):
 	# returns versions directory in OS correct syntax
-	path = os.getcwd()
+	path = homeDirectory()
 	if "win" in sys.platform:
 		path += '\\Versions\\'
 	elif "linux" in sys.platform.lower():
@@ -70,9 +70,9 @@ def versionsDirectory():
 	return path
 
 
-def schemaDirectory():
+def schemaDirectory(config):
 	# returns schema directory in OS correct syntax
-	path = os.getcwd()
+	path = homeDirectory()
 	if "win" in sys.platform:
 		path += '\\Schema\\'
 	elif "linux" in sys.platform.lower():
@@ -80,7 +80,7 @@ def schemaDirectory():
 	return path
 
 
-def projectDirectory():
+def projectDirectory(config):
 	# returns schema directory in OS correct syntax
 	path = os.getcwd()
 	if "win" in sys.platform:

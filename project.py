@@ -99,7 +99,7 @@ class Project:
 
 	def projectExists(self, name):
 		files = []
-		for f in os.listdir(glb.homeDirectory() + "Projects"):
+		for f in os.listdir(glb.projectDirectory()):
 			if f.endswith(".json"):
 				files.append(os.path.splitext(f.lower())[0])
 				
@@ -216,6 +216,14 @@ class Project:
 		
 		# length to iterate over
 		diffLength = len(linesF1) if len(linesF1) > len(linesF2) else len(linesF2)
+		
+		for f1 in range(len(linesF1)):
+			if len(linesF1[f1]) < 1:
+				linesF1[f1] = '<br />\n'
+				
+		for f2 in range(len(linesF2)):
+			if len(linesF2[f2]) < 1:
+				linesF2[f2] = '<br />\n'
 		
 		# pad file that has less lines
 		if len(linesF1) > len(linesF2):
