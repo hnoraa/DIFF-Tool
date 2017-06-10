@@ -42,8 +42,13 @@ class Project:
 			self.save()
 	
 	def load(self, projectName):
+		# check to see if project exists/get project name
+		x = self.getProjectName(projectName)
+		if(x is None):
+			return ''
+		
 		# load json into string
-		jsonString = glb.getJsonString(glb.projectDirectory() + projectName + '.json')
+		jsonString = glb.getJsonString(glb.projectDirectory() + x + '.json')
 		
 		# convert to project object
 		self.project['name'] = jsonString['name']
@@ -71,6 +76,26 @@ class Project:
 			if f.endswith(".json"):
 				print os.path.splitext(f)[0]
 		return ''
+		
+	def searchProjects(self, searchString):
+		searches = searchString.lower().split('*')
+		
+		files = []	
+		for f in os.listdir(glb.homeDirectory() + "Projects"):
+			if f.endswith(".json"):
+				x = os.path.splitext(f.lower())[0]
+				if any(s in x for s in searches):
+					files.append(x)
+		return files
+				
+	def getProjectName(self, name):
+		for f in os.listdir(glb.homeDirectory() + "Projects"):
+			if f.endswith(".json"):
+				x = os.path.splitext(f)[0]
+				if name.lower() in x.lower():
+					return x
+		return None
+		
 
 	def projectExists(self, name):
 		files = []
@@ -107,7 +132,8 @@ class Project:
 		
 	def deleteProject(self):
 		# first delete project version file, then delete project json file
-		return True
+		os.remove(glb.versionsDirectory() + self.project['guid'] + '.zip')
+		os.remove(glb.projectDirectory() + self.project['name'] + '.json')
 	
 	def versionDocument(self, fileName):
 		# add a version to the new document
@@ -125,7 +151,7 @@ class Project:
 		# new version
 		newName = '{0}_ver_{1}{2}'.format(fn, str(newVer), fext)
 		
-		zf = zipfile.ZipFile(self.getArchiveName(), mode='a')
+		zf = zipfile.ZipFile(glb.versionsDirectory() + self.project['guid'] + '.zip', mode='a')
 		try:
 			zf.write(fileName, arcname=newName)
 		except zipfile.error:
@@ -137,16 +163,11 @@ class Project:
 	
 	def getFilesInArchive(self):
 		# get list of all files in archive
-		try:
-			fn = glb.versionsDirectory() + self.project['guid'] + '.zip'
-			zf = zipfile.ZipFile(fn, 'r')
-			nl = zf.namelist()
-		except IOError as e:
-			print e.message
-			nl = None
-		finally:
-			zf.close()
-			return nl
+		fn = glb.versionsDirectory() + self.project['guid'] + '.zip'
+		zf = zipfile.ZipFile(fn, 'r')
+		nl = zf.namelist()
+		zf.close()
+		return nl
 	
 	def listVersions(self):
 		# get a list of all version numbers in the archive
@@ -186,7 +207,7 @@ class Project:
 		self.currentDiff = []
 		
 		# open files from archive and compare
-		arc = zipfile.ZipFile(self.getArchiveName(), 'r')
+		arc = zipfile.ZipFile(glb.versionsDirectory() + self.project['guid'] + '.zip', 'r')
 		linesF1 = arc.open(fList[0]).readlines()
 		linesF1 = [x.strip() for x in linesF1]
 		linesF2 = arc.open(fList[1]).readlines()
@@ -200,12 +221,12 @@ class Project:
 		if len(linesF1) > len(linesF2):
 			add = len(linesF1) - len(linesF2)
 			for x in range(0, add):
-				linesF2.append(' ')
+				linesF2.append('<br />\n')
 		
 		elif len(linesF1) < len(linesF2):
 			add = len(linesF2) - len(linesF1)
 			for x in range(0, add):
-				linesF1.append(' ')
+				linesF1.append('<br />\n')
 		
 		# compare
 		for x in range(0, diffLength):

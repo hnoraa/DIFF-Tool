@@ -36,9 +36,6 @@ class HtmlGen:
 		self.doc = ''.join([self.doc, '<div id="col1" class="col">\n'])  		# column 1
 		
 		for i in range(len(self.diffs)):
-			if len(self.diffs[i]["firstFile"]) == 1:
-				self.diffs[i]["firstFile"] = br
-				
 			self.doc = ''.join([self.doc, '<div id="diffLine"'])
 				
 			if self.diffs[i]["difference"]:
@@ -54,10 +51,7 @@ class HtmlGen:
 		
 		self.doc = ''.join([self.doc, '<div id="col2" class="col">\n'])  		# column 2
 		
-		for i in range(len(self.diffs)):
-			if len(self.diffs[i]["secondFile"]) == 1:
-				self.diffs[i]["secondFile"] = br
-				
+		for i in range(len(self.diffs)):	
 			self.doc = ''.join([self.doc, '<div id="diffLine"'])
 			if self.diffs[i]["difference"]:
 				self.doc = ''.join([self.doc, ' class="diffChange '])
@@ -75,10 +69,10 @@ class HtmlGen:
 		self.doc = ''.join([self.doc, divEnd])  								# end main div
 		self.doc = ''.join([self.doc, '</body>\n</html>'])
 	
-	def save(self):
+	def save(self, fileName):
 		# save HTML file
 		try:
-			f = open("test.html", "w")
+			f = open(glb.homeDirectory() + fileName + ".html", "w")
 			f.write(self.doc)
 		except IOError as e:
 			print e

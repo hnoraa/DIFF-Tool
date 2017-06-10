@@ -92,8 +92,8 @@ def projectDirectory():
 
 def getJsonString(fn):
 	# returns a json string
+	f = open(fn, 'r')
 	try:
-		f = open(fn, 'r')
 		jsonString = json.loads(f.read())
 	except IOError as e:
 		print e.message

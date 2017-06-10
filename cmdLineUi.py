@@ -24,7 +24,7 @@ class CmdLineUi:
 			print ' - [4] Help'
 			print ' - [5] Quit'
 			print '=' * 80
-			if len(self.g.currentProject.project['name']) > 0:
+			if self.g.currentProject is not None:
 				print 'Current Project: ' + self.g.currentProject.project['name']
 				print '=' * 80
 			else:
@@ -123,6 +123,14 @@ class CmdLineUi:
 			elif choice == '1':
 				# search for projects (via wildcard)
 				searchString = raw_input('Search for project(s) (*: wildcard): ')
+				fs = self.g.currentProject.searchProjects(searchString)
+				print fs
+				print '=' * 80
+				print 'Projects matching' + searchString + ':'
+				for s in range(len(fs)):
+					print fs[s] 
+				print '=' * 80
+				print ''
 				q = True
 			elif choice == '2':
 				# open a project
@@ -141,6 +149,8 @@ class CmdLineUi:
 					q = True
 				else:
 					# return to main menu
+					self.g.currentProject.deleteProject()
+					self.g.currentProject = None
 					print 'Project successfully deleted!'
 					q = True
 			elif choice == '4':
@@ -240,7 +250,7 @@ class CmdLineUi:
 				info = 'Project: ' + self.g.currentProject.project["name"] + '<br /> Comparing Versions: [' + str(vers[0]) + '] and [' + str(vers[1]) + ']<br />'
 				self.htm = h.HtmlGen(self.g.theme, info, self.g.currentProject.currentDiff)
 				self.htm.gen()
-				self.htm.save()
+				self.htm.save(self.g.currentProject.project["name"])
 				
 				print 'HTML doc created...'
 				q = True

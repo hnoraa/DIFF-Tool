@@ -19,6 +19,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 |             | - Fixed default theme css.                                                                                  |
 |             | - Allow users to edit project parameters (including name which re-creates the file with the new name).      |
 |             | - Cleaned up existing project code.                                                                         |
+|             | - Allow users to delete projects.                                                                           |
+|             | - Allow users to search via search criteria (string with * as wild cards).                                  |
 |  06/08/2017 | - Fixing html layout, working on generating html docs.                                                      |
 |             | - Ability to generate html from command line ui.                                                            |
 |  06/02/2017 | - Allow users to upload a new version to project.                                                           |
@@ -63,8 +65,13 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * Ubuntu 16.04.2 LTS
 
 ## To Do
-* [ ] ability to delete a project
-* [ ] search projects based on search string
+* [ ] add project name to title in html doc
+* [ ] lines with just blank space don't show up on html doc
+* [X] give html doc the name of the project
+* [ ] where should html docs go?
+* [X] when loading a project in Linux, file name is case sensitive
+* [X] ability to delete a project
+* [X] search projects based on search string
 * [X] make sure file loading and other operations have try catch statements
 * [X] if no project is loaded, dont allow user to access compare option
 * [X] project info in html diff header div
