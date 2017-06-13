@@ -338,7 +338,7 @@ class CmdLineUi:
 				
 				# reload the config file
 				self.g.configuration.loadConfig()
-				self.g.configuration.listThemes()
+				print self.g.configuration.listThemes()
 			elif choice == '4':
 				# back
 				q = True
@@ -348,12 +348,8 @@ class CmdLineUi:
 	
 	def displayParams(self):
 		print '=' * 80
-		print '         [version] - ' + self.g.configuration.version
 		print '     [description] - ' + self.g.configuration.description
 		print '          [author] - ' + self.g.configuration.author
-		print '    [appDirectory] - ' + self.g.configuration.appDirectory
-		print '  [themeDirectory] - ' + self.g.configuration.themeDirectory
-		print '[versionDirectory] - ' + self.g.configuration.versionDirectory
 		print '=' * 80
 		return ''
 	
@@ -367,4 +363,4 @@ class CmdLineUi:
 	
 	def helpMenu(self):
 		print 'Help:'
-		self.g.configuration.about()
+		print self.g.configuration.about()

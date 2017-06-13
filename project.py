@@ -96,7 +96,6 @@ class Project:
 					return x
 		return None
 		
-
 	def projectExists(self, name):
 		files = []
 		for f in os.listdir(glb.projectDirectory()):

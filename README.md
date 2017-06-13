@@ -1,7 +1,7 @@
 ## Diff Tool
 A tool for comparing file versions
 
-**NOTE: This is for Python 2.7 but will have a Python 3 branch in the future**
+**NOTE: This is for Python 2.7 but will probably have a Python 3 branch in the future**
 
 ## Description
 Diff Tool is a tool for comparing 2 different versions of the same file. It produces an .html file as output
@@ -15,6 +15,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date        | Contents                                                                                                    |
 |-------------|-------------------------------------------------------------------------------------------------------------|
+|  06/13/2017 | - Added GUI to project.                                                                                     |
+|             | - Clean up configuration file and schema to remove directories and version.                                 |
 |  06/09/2017 | - Tied together diff code with html generation code.                                                        |
 |             | - Fixed default theme css.                                                                                  |
 |             | - Allow users to edit project parameters (including name which re-creates the file with the new name).      |
@@ -65,7 +67,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * Ubuntu 16.04.2 LTS
 
 ## To Do
-* [ ] remove directories from config object
+* [X] remove directories from config object
 * [X] add project name to title in html doc
 * [X] lines with just blank space don't show up on html doc
 * [X] give html doc the name of the project
@@ -135,14 +137,9 @@ have been set to ignore as a privacy measure to potential users/contributors.
 			"file": "darkTheme.json"
 		}
 	],
-	"version": "0.0.1",
 	"name": "Diff Tool",
 	"description": "A file comparing tool",
-	"author": "Aaron Horeth",
-	"appDirectory": "C:\\DiffTool",
-	"versionDirectory": "C:\\DiffTool\\Versions",
-	"schemaDirectory": "C:\\DiffTool\\Schema",
-	"projectDirectory": "C:\\DiffTool\\Projects"
+	"author": "Aaron Horeth"
 }
 ```
 * configSchema.json: the schema for proper config file layout
@@ -161,14 +158,6 @@ have been set to ignore as a privacy measure to potential users/contributors.
 			"description": "Author of the application",
 			"type": "string"
 		},
-		"appDirectory": {
-			"description": "Main directory of the application",
-			"type": "string"
-		},
-		"versionDirectory": {
-			"description": "Version directory for the application",
-			"type": "string"
-		},
 		"themes": {
 			"type": "array",
 			"items": {"$ref": "#/definitions/name", "$ref": "#/definitions/file"},
@@ -183,22 +172,6 @@ have been set to ignore as a privacy measure to potential users/contributors.
 		},
 		"theme": {
 			"description": "Default theme",
-			"type": "string"
-		},
-		"version": {
-			"description": "Version of the application",
-			"type": "string"
-		},
-		"schemaDirectory": {
-			"description": "Schema directory for the application",
-			"type": "string"
-		},
-		"themeDirectory": {
-			"description": "Theme directory for the application",
-			"type": "string"
-		},
-		"projectDirectory": {
-			"description": "Projects directory for the application",
 			"type": "string"
 		},
 		"description": {

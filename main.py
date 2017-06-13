@@ -1,12 +1,13 @@
 # Diff Tool - main.py
 # Entry point for the Diff Tool
 import cmdLineUi
+import gui
 import globalFunc as glb
 from globalFunc import Globals
-import sys
+from Tkinter import *
 
 # flags
-COMMAND_LINE = True
+COMMAND_LINE = False
 DEBUG = True
 
 # set global object
@@ -40,6 +41,8 @@ if COMMAND_LINE:
 	cmdLn.mainMenu()
 else:
 	# GUI (possible future implementation)
-	pass
+	root = Tk()
+	app = gui.DiffToolWindow(root, glbs)
+	root.mainloop()
 
 sys.exit()

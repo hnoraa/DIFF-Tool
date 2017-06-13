@@ -60,7 +60,7 @@ def themesDirectory():
 	return path
 
 
-def versionsDirectory(config):
+def versionsDirectory():
 	# returns versions directory in OS correct syntax
 	path = homeDirectory()
 	if "win" in sys.platform:
@@ -70,7 +70,7 @@ def versionsDirectory(config):
 	return path
 
 
-def schemaDirectory(config):
+def schemaDirectory():
 	# returns schema directory in OS correct syntax
 	path = homeDirectory()
 	if "win" in sys.platform:
@@ -80,7 +80,7 @@ def schemaDirectory(config):
 	return path
 
 
-def projectDirectory(config):
+def projectDirectory():
 	# returns schema directory in OS correct syntax
 	path = os.getcwd()
 	if "win" in sys.platform:
@@ -142,3 +142,10 @@ def updateJsonConfig(configFile, key, value):
 	finally:
 		f.truncate()
 		f.close()
+
+
+def readFile(filename):
+	f = open(filename, 'r')
+	text = f.read()
+	f.close()
+	return text

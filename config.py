@@ -29,14 +29,8 @@ class Config:
 	def clearObject(self):
 		self.name = ''
 		self.author = ''
-		self.version = ''
 		self.theme = ''
 		self.themes = []
-		self.themeDirectory = ''
-		self.appDirectory = ''
-		self.schemaDirectory = ''
-		self.versionDirectory = ''
-		self.projectDirectory = ''
 		self.description = ''
 	
 	def updateConfig(self, key, value):
@@ -57,14 +51,8 @@ class Config:
 		# populate object
 		self.name = self.jsonString["name"]
 		self.author = self.jsonString["author"]
-		self.version = self.jsonString["version"]
 		self.description = self.jsonString["description"]
 		self.theme = self.jsonString["theme"]
-		self.themeDirectory = self.jsonString["themeDirectory"]
-		self.appDirectory = self.jsonString["appDirectory"]
-		self.schemaDirectory = self.jsonString["schemaDirectory"]
-		self.versionDirectory = self.jsonString["versionDirectory"]
-		self.projectDirectory = self.jsonString["projectDirectory"]
 	
 	def loadThemes(self, firstLoad=False):
 		if not firstLoad:
@@ -77,24 +65,30 @@ class Config:
 			theme = {"name": i["name"], "file": i["file"]}
 			self.themes.append(theme)
 	
-	def about(self):
-		print '=' * 80
-		print glb.getTodaysDateAsString()
-		print 'About: ' + self.name
-		print 'Version: ' + self.version
-		print 'Author: ' + self.author
-		print self.description
-		print '=' * 80
-		return ''
+	def about(self, gui=False):
+		text = '=' * 80 + '\n'
+		if gui:
+			text = ''
+		text = ''.join([text, glb.getTodaysDateAsString() + '\n'])
+		text = ''.join([text, 'About: ' + self.name + '\n'])
+		text = ''.join([text, 'Version: 1.0.0' + '\n'])
+		text = ''.join([text, 'Author: ' + self.author + '\n'])
+		text = ''.join([text, self.description + '\n'])
+		if not gui:
+			text = ''.join([text, '=' * 80 + '\n'])
+		return text
 	
-	def listThemes(self):
-		print '=' * 80
-		print 'Themes:'
+	def listThemes(self, gui=False):
+		text = '=' * 80 + '\n'
+		if gui:
+			text = ''
+		text = ''.join([text, 'Themes:\n'])
 		for i in self.themes:
 			if i["name"] in self.theme:
 				msg = ' - Current Theme: '
 			else:
 				msg = ' - '
-			print msg + i["name"] + ' [File Name: ' + i["file"] + ']'
-		print '=' * 80
-		return ''
+			text = ''.join([text, msg + i["name"] + ' [File Name: ' + i["file"] + ']\n'])
+			if not gui:
+				text = ''.join([text, '=' * 80 + '\n'])
+		return text
