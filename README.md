@@ -17,6 +17,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 |-------------|-------------------------------------------------------------------------------------------------------------|
 |  06/13/2017 | - Added GUI to project.                                                                                     |
 |             | - Clean up configuration file and schema to remove directories and version.                                 |
+|             | - Updated display methods in config.py to reflect addition of gui.                                          |
 |  06/09/2017 | - Tied together diff code with html generation code.                                                        |
 |             | - Fixed default theme css.                                                                                  |
 |             | - Allow users to edit project parameters (including name which re-creates the file with the new name).      |
@@ -61,6 +62,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 * uuid
 * zipfile
 * re
+* Tkinter
 
 ## Tested on Following OSs
 * Windows 10
@@ -85,11 +87,10 @@ have been set to ignore as a privacy measure to potential users/contributors.
 		track of latest version index
 * [X] check to see if project already exists when creating a new project 
 		(based on project name only)
-* [ ] increase functionality of diff code, it should look to see if 0 or 
-		more characters are different between each line on each file
+* [ ] **increase functionality of diff code, it should look to see if 0 or
+		more characters are different between each line on each file**
 * [X] organize app so common code goes into globalFunc.py
-* [X] **IMPORTANT: insure that all config parameters are being used in the app 
-		(currently, the directories aren\'t being utilized 05/05/2017)**
+* [X] insure that all config parameters are being used in the app
 * [X] global project for app (currently opened project)
 * [X] project schema (update config schema)
 * [X] projects directory
