@@ -15,7 +15,7 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date        | Contents                                                                                                    |
 |-------------|-------------------------------------------------------------------------------------------------------------|
-|  06/19/2017 | - Ability to load project in GUI.                                                                           |
+|  06/20/2017 | - Ability to load project in GUI.                                                                           |
 |             | - Loaded project displays data on GUI widgets.                                                              |
 |  06/13/2017 | - Added GUI to project.                                                                                     |
 |             | - Clean up configuration file and schema to remove directories and version.                                 |
