@@ -15,6 +15,8 @@ have been set to ignore as a privacy measure to potential users/contributors.
 ## Updates
 | Date        | Contents                                                                                                    |
 |-------------|-------------------------------------------------------------------------------------------------------------|
+|  06/23/2017 | - Created diagram for layout of GUI.                                                                        |
+|             | - Formatted menu bar options according to drawing.                                                          |
 |  06/20/2017 | - Ability to load project in GUI.                                                                           |
 |             | - Loaded project displays data on GUI widgets.                                                              |
 |  06/13/2017 | - Added GUI to project.                                                                                     |
