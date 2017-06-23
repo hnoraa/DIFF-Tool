@@ -18,7 +18,7 @@ glbs = Globals()
 if glb.validateJson(glb.schemaDirectory() + 'configSchema.json', glb.homeDirectory() + 'config.local.json'):
 	glbs.loadConfig('config.local.json')
 else:
-	print "ERROR: Invalid Confguration"
+	print "ERROR: Invalid Configuration"
 	sys.exit()
 
 # load themes
@@ -40,9 +40,9 @@ if COMMAND_LINE:
 	cmdLn.greet()
 	cmdLn.mainMenu()
 else:
-	# GUI (possible future implementation)
 	root = Tk()
 	app = gui.DiffToolWindow(root, glbs)
+	root.resizable(width=False, height=False)
 	root.mainloop()
 
 sys.exit()

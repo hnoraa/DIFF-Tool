@@ -19,7 +19,7 @@ class DiffToolWindow(Frame):
 		self.projectNameLbl = StringVar()
 		self.currentVerLbl = StringVar()
 		self.authorLbl = StringVar()
-		self.updateLabels('Project:', 'Current Version:', 'Author')
+		self.updateLabels('Project:', 'Current Version:', 'Author:')
 		
 		self.fileList = StringVar()
 		
@@ -41,8 +41,9 @@ class DiffToolWindow(Frame):
 		self.parent.config(menu=menubar)
 		
 		fileMenu = Menu(menubar)
-		fileMenu.add_command(label='Open Project', command=self.onProjectOpen)
-		fileMenu.add_command(label='Save Project', command=self.onProjectSave)
+		fileMenu.add_command(label='New Project', command=self.onFileNewProject)
+		fileMenu.add_command(label='Open Project', command=self.onFileProjectOpen)
+		fileMenu.add_command(label='Save Project', command=self.onFileProjectSave)
 		fileMenu.add_command(label='Exit', command=self.quit)
 		
 		helpMenu = Menu(menubar)
@@ -50,13 +51,19 @@ class DiffToolWindow(Frame):
 		
 		configMenu = Menu(menubar)
 		configMenu.add_command(label='Parameters', command=self.onConfigShowParams)
+		configMenu.add_command(label='Change Diff Theme', command=self.onConfigChangeTheme)
+		
+		projectMenu = Menu(menubar)
+		projectMenu.add_command(label='Compare', command=self.onProjectCompare)
+		projectMenu.add_command(label='Upload New Version', command=self.onProjectUploadVersion)
 		
 		menubar.add_cascade(label='File', menu=fileMenu)
+		menubar.add_cascade(label='Project', menu=projectMenu)
 		menubar.add_cascade(label='Configuration', menu=configMenu)
 		menubar.add_cascade(label='Help', menu=helpMenu)
 	
 	def createGrid(self):
-		# parent grid config
+		# window layout
 		self.columnconfigure(0, weight=1, pad=5)
 		self.columnconfigure(1, weight=1, pad=5)
 		for i in range(3):
@@ -97,7 +104,11 @@ class DiffToolWindow(Frame):
 		y = (sh - self.size[1]) / 2
 		self.parent.geometry('%dx%d+%d+%d' % (self.size[0], self.size[1], x, y))
 	
-	def onProjectOpen(self):
+	# file menu
+	def onFileNewProject(self):
+		pass
+	
+	def onFileProjectOpen(self):
 		ftypes = [('JSON Files', '*.json')]
 		dlg = fd.Open(self, filetypes=ftypes)
 		fl = dlg.show()
@@ -112,9 +123,9 @@ class DiffToolWindow(Frame):
 			lst = self.g.currentProject.getFilesInArchive()
 			
 			# set label text
-			self.updateLabels('Project: ' + self.g.currentProject.project["name"],
-							  'Current Version: ' + str(self.g.currentProject.project["latestVersion"]),
-							  'Author: ' + self.g.currentProject.project["author"])
+			self.updateLabels("Project: " + self.g.currentProject.project["name"],
+							  "Current Version: " + str(self.g.currentProject.project["latestVersion"]),
+							  "Author: " + self.g.currentProject.project["author"])
 			
 			# set text area text
 			self.descriptionTxt.config(state=NORMAL)
@@ -125,15 +136,31 @@ class DiffToolWindow(Frame):
 			for l in range(len(lst)):
 				self.fileList.insert(END, lst[l])
 	
-	def onProjectSave(self):
-		pass
+	def onFileProjectSave(self):
+		if len(self.g.currentProject.project['name']) == 0:
+			mb.showwarning("Error", "Please open a project in order to save.")
+		else:
+			self.g.currentProject.save()
+			mb.showinfo("Success", "Project " + self.g.currentProject.project["name"] + "\nsuccessfully saved!")
 	
+	# help menu
 	def onAbout(self):
 		about = self.g.configuration.about(gui=True)
-		mb.showinfo('About ' + self.g.configuration.name, about)
+		mb.showinfo("About " + self.g.configuration.name, about)
 	
+	# configuration menu
 	def onConfigShowParams(self):
 		text = 'Author: ' + self.g.configuration.author + '\n'
 		text = ''.join([text, 'Description:\n' + self.g.configuration.description])
-		text = ''.join([text, '\n' + self.g.configuration.listThemes(gui=True)])
+		#text = ''.join([text, '\n' + self.g.configuration.listThemes(gui=True)])
 		mb.showinfo('Configuration Parameters', text)
+		
+	def onConfigChangeTheme(self):
+		pass
+
+	# project menu
+	def onProjectCompare(self):
+		pass
+	
+	def onProjectUploadVersion(self):
+		pass
