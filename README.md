@@ -1,9 +1,9 @@
-##Python3Version Branch
+
 
 ## Diff Tool
-A tool for comparing file versions
+A tool for comparing file versions. This is the Python3Version branch!
 
-##**NOTE: Start of upgrade to python 3 imminent**
+**NOTE: Start of upgrade to python 3 imminent**
 
 **NOTE: This is for Python 2.7 but will probably have a Python 3 branch in the future**
 
