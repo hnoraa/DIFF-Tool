@@ -1,7 +1,9 @@
 ## Diff Tool
 A tool for comparing file versions
 
-##**NOTE: Start of upgrade to python 3 imminent**
+## Important
+**NOTE: Start of upgrade to python 3 imminent**
+
 **NOTE: This is for Python 2.7 but will probably have a Python 3 branch in the future**
 
 ## Description
