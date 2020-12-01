@@ -12,11 +12,7 @@ def file_empty(f):
     return os.path.getsize(f) == 0
 
 def source_larger(f_source, f_target):
-    if os.path.getsize(f_source) > os.path.getsize(f_target):
-        return True
-    return False
+    return os.path.getsize(f_source) > os.path.getsize(f_target)
 
 def equal_size(f_source, f_target):
-    if os.path.getsize(f_source) == os.path.getsize(f_target):
-        return True
-    return False
+    return os.path.getsize(f_source) == os.path.getsize(f_target)
