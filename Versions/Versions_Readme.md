@@ -1,1 +1,0 @@
-Versions contains the zip archives of the files that have been compared before.
