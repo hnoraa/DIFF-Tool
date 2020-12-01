@@ -8,11 +8,11 @@ dr = '/home/pi/Code/github/DIFF-Tool/testFiles/'
 
 with open(cfg, 'r') as f:
     data = json.load(f)
-print(data)
 
 # single file tests
 for x in data['files']:
     print("testing: {:s}{:s}".format(dr, x))
+
     if file_exists(dr + x):
         print("{:s} exists".format(x))
     else:
@@ -31,14 +31,13 @@ for x in data['files']:
 # test the sequence functions
 for x in data['sequence']:
     print("testing sequence: {:s} & {:s}".format(x['f1'], x['f2']))
-
-    if source_larger(x['f1'], x['f2']):
-        print("source {:s} larger than target {:s}".format(x['f1'], x['f2']))
-    else:
-        if source_larger(x['f2'], x['f1']):
-            print("target {:s} larger than source {:s}".format(x['f2'], x['f1']))
     
-    if equal_size(x['f1'], x['f2']):
+    if equal_size(dr + x['f1'], dr + x['f2']):
         print("(source) {:s} == (target) {:s}".format(x['f1'], x['f2']))
     else:
         print("(source) {:s} != (target) {:s}".format(x['f1'], x['f2']))
+        
+        if source_larger(dr + x['f1'], dr + x['f2']):
+            print("source {:s} larger than target {:s}".format(x['f1'], x['f2']))
+        else:
+            print("target {:s} larger than source {:s}".format(x['f2'], x['f1']))
