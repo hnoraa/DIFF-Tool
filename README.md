@@ -1,11 +1,6 @@
 ## Diff Tool
 A tool for comparing file versions
 
-## Important
-**NOTE: Start of upgrade to python 3 imminent**
-
-**NOTE: This is for Python 2.7 but will probably have a Python 3 branch in the future**
-
 ## Description
 Diff Tool is a tool for comparing 2 different versions of the same file. It produces an .html file as output
 this file contains the results of the diff comparison. 
