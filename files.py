@@ -16,3 +16,6 @@ def source_larger(f_source, f_target):
 
 def equal_size(f_source, f_target):
     return os.path.getsize(f_source) == os.path.getsize(f_target)
+
+def file_size(f):
+	return os.path.getsize(f)
